@@ -14,6 +14,10 @@
 		0F7D782A1F6241A30073E033 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F7D78281F6241A30073E033 /* LaunchScreen.storyboard */; };
 		0F7D78351F6241A30073E033 /* ThreadsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78341F6241A30073E033 /* ThreadsTests.swift */; };
 		0F7D78401F6241A30073E033 /* ThreadsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D783F1F6241A30073E033 /* ThreadsUITests.swift */; };
+		0F7D784F1F6268650073E033 /* Anon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D784E1F6268650073E033 /* Anon.swift */; };
+		0F7D78511F6268710073E033 /* Thread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78501F6268710073E033 /* Thread.swift */; };
+		0F7D78531F62687A0073E033 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78521F62687A0073E033 /* Post.swift */; };
+		0F7D78551F62688A0073E033 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78541F62688A0073E033 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		0F7D783B1F6241A30073E033 /* ThreadsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThreadsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7D783F1F6241A30073E033 /* ThreadsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsUITests.swift; sourceTree = "<group>"; };
 		0F7D78411F6241A30073E033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F7D784E1F6268650073E033 /* Anon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anon.swift; sourceTree = "<group>"; };
+		0F7D78501F6268710073E033 /* Thread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thread.swift; sourceTree = "<group>"; };
+		0F7D78521F62687A0073E033 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0F7D78541F62688A0073E033 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 		0F7D781E1F6241A20073E033 /* Threads */ = {
 			isa = PBXGroup;
 			children = (
+				0F7D784D1F6268490073E033 /* Objects */,
 				0F7D781F1F6241A20073E033 /* AppDelegate.swift */,
 				0F7D78211F6241A20073E033 /* ViewController.swift */,
 				0F7D78231F6241A20073E033 /* Main.storyboard */,
@@ -123,6 +132,17 @@
 				0F7D78411F6241A30073E033 /* Info.plist */,
 			);
 			path = ThreadsUITests;
+			sourceTree = "<group>";
+		};
+		0F7D784D1F6268490073E033 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				0F7D784E1F6268650073E033 /* Anon.swift */,
+				0F7D78501F6268710073E033 /* Thread.swift */,
+				0F7D78521F62687A0073E033 /* Post.swift */,
+				0F7D78541F62688A0073E033 /* Message.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7D784F1F6268650073E033 /* Anon.swift in Sources */,
 				0F7D78221F6241A20073E033 /* ViewController.swift in Sources */,
 				0F7D78201F6241A20073E033 /* AppDelegate.swift in Sources */,
+				0F7D78551F62688A0073E033 /* Message.swift in Sources */,
+				0F7D78511F6268710073E033 /* Thread.swift in Sources */,
+				0F7D78531F62687A0073E033 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

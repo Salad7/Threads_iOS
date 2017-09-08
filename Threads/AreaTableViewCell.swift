@@ -9,6 +9,12 @@
 import UIKit
 
 class AreaTableViewCell: UITableViewCell {
+    @IBOutlet weak var replies: UILabel!
+    @IBOutlet weak var upvotes: UILabel!
+    @IBOutlet weak var elapsedTime: UILabel!
+    @IBAction func upvoteBtn(_ sender: UIButton) {
+    }
+    @IBOutlet weak var message: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

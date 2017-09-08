@@ -11,10 +11,9 @@ import UIKit
 class LocalTableViewCell: UITableViewCell {
     @IBOutlet weak var elapsedTime: UILabel!
     @IBOutlet weak var replies: UILabel!
-    @IBAction func upvote(_ sender: UIButton) {
+    @IBOutlet weak var upvote: UILabel!
+    @IBAction func upvoteBtn(_ sender: UIButton) {
     }
-    @IBOutlet weak var upvoteTxt: UILabel!
-
     @IBOutlet weak var message: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

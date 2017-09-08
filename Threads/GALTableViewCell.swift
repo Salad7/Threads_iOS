@@ -1,5 +1,5 @@
 //
-//  PostTableViewCell.swift
+//  GALTableViewCell.swift
 //  Threads
 //
 //  Created by cci-loaner on 9/8/17.
@@ -8,12 +8,7 @@
 
 import UIKit
 
-class PostTableViewCell: UITableViewCell {
-    @IBOutlet weak var upvotes: UILabel!
-    @IBOutlet weak var message: UILabel!
-    @IBAction func upvoteBtn(_ sender: UIButton) {
-    }
-    @IBOutlet weak var icon: UIImageView!
+class GALTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

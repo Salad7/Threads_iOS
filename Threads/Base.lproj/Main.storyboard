@@ -52,7 +52,7 @@
         <!--CreateThread-->
         <scene sceneID="aM1-Db-PUT">
             <objects>
-                <viewController title="CreateThread" id="aJH-DP-v3w" sceneMemberID="viewController">
+                <viewController title="CreateThread" id="aJH-DP-v3w" customClass="CreateThreadViewController" customModule="Threads" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uix-1w-xY3"/>
                         <viewControllerLayoutGuide type="bottom" id="8Og-Jz-m3R"/>
@@ -73,6 +73,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Continue &amp; Invite friends"/>
+                                <connections>
+                                    <action selector="submitBtn:" destination="aJH-DP-v3w" eventType="touchUpInside" id="R9j-Wx-3Bq"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick the name that anyone who enters this thread will see. You can only name a thread once" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jk1-oC-Yxc">
                                 <rect key="frame" x="23" y="213" width="343" height="44"/>
@@ -107,6 +110,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="threadNameField" destination="Jfq-Le-u4Q" id="Pa6-7O-9tZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcH-Xe-FSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -115,7 +121,7 @@
         <!--LocalThread-->
         <scene sceneID="iY5-3v-HGj">
             <objects>
-                <viewController title="LocalThread" id="3mD-rG-X7c" sceneMemberID="viewController">
+                <viewController title="LocalThread" id="3mD-rG-X7c" customClass="LocalViewController" customModule="Threads" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PCn-Lk-HgW"/>
                         <viewControllerLayoutGuide type="bottom" id="o9w-8Q-yF0"/>
@@ -206,15 +212,25 @@
                                 <rect key="frame" x="16" y="637" width="124" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Invite"/>
+                                <connections>
+                                    <action selector="inviteBtn:" destination="3mD-rG-X7c" eventType="touchUpInside" id="lUk-U5-AEy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-bv-SEv">
                                 <rect key="frame" x="235" y="637" width="124" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postBtn:" destination="3mD-rG-X7c" eventType="touchUpInside" id="bhB-Zq-RFi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="localTableView" destination="WEe-EU-bot" id="daw-BX-Qne"/>
+                        <outlet property="threadTit" destination="Bke-3d-1q9" id="SOe-RX-GVi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILR-XA-QZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -279,7 +295,7 @@
         <!--Post-->
         <scene sceneID="W45-j9-0Km">
             <objects>
-                <viewController title="Post" id="6SD-5a-VXs" sceneMemberID="viewController">
+                <viewController title="Post" id="6SD-5a-VXs" customClass="PostViewController" customModule="Threads" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Irj-2g-wmf"/>
                         <viewControllerLayoutGuide type="bottom" id="G3v-ua-U6E"/>
@@ -347,6 +363,9 @@
                                 <rect key="frame" x="336" y="614" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="send"/>
+                                <connections>
+                                    <action selector="sendBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="7lZ-An-eMa"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZr-h4-rov">
                                 <rect key="frame" x="0.0" y="28" width="375" height="122"/>
@@ -370,6 +389,9 @@
                                         <rect key="frame" x="21" y="30" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="navigate-up-arrow"/>
+                                        <connections>
+                                            <action selector="upvoteBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="B02-qR-tZx"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="37 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KEU-NZ-FyK">
                                         <rect key="frame" x="273" y="101" width="94" height="21"/>
@@ -399,17 +421,27 @@
                                 <rect key="frame" x="6" y="615" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="left-arrow(3)"/>
+                                <connections>
+                                    <action selector="returnBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="WxT-FT-KJw"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXw-Rn-iaj">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lh3-uX-idQ">
                                 <rect key="frame" x="166" y="552" width="42" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="message" destination="eDH-Zo-hHX" id="6tG-Z0-zU1"/>
+                        <outlet property="postTableView" destination="RVJ-cp-BhV" id="uDg-5O-NbQ"/>
+                        <outlet property="replies" destination="Dpq-y3-SCj" id="59c-zp-nNx"/>
+                        <outlet property="textView" destination="IXQ-ga-UwP" id="Pv2-b3-QvE"/>
+                        <outlet property="threadTitle" destination="9Jb-Au-pa3" id="SQA-5g-X3l"/>
+                        <outlet property="timeElapsed" destination="KEU-NZ-FyK" id="XRF-pe-VM3"/>
+                        <outlet property="upvotes" destination="B2o-Ys-MCL" id="CVT-yq-wOv"/>
+                        <outlet property="userIcon" destination="lh3-uX-idQ" id="V60-EG-d3V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPT-r4-UOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -418,7 +450,7 @@
         <!--GlobalThread-->
         <scene sceneID="ncq-K2-fXV">
             <objects>
-                <viewController title="GlobalThread" id="DAl-6f-ehZ" sceneMemberID="viewController">
+                <viewController title="GlobalThread" id="DAl-6f-ehZ" customClass="GlobalViewController" customModule="Threads" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="63T-xU-unO"/>
                         <viewControllerLayoutGuide type="bottom" id="wq7-v1-qXs"/>
@@ -497,6 +529,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="globalTableView" destination="yup-O5-C28" id="n02-nv-rJD"/>
+                        <outlet property="threadTitle" destination="oZr-Dg-sub" id="us5-CP-GPR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpE-UP-UlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -505,7 +541,7 @@
         <!--AreaThread-->
         <scene sceneID="iv6-oi-qzT">
             <objects>
-                <viewController title="AreaThread" id="ZRw-Ve-2VV" sceneMemberID="viewController">
+                <viewController title="AreaThread" id="ZRw-Ve-2VV" customClass="AreaViewController" customModule="Threads" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ej7-Eo-CCr"/>
                         <viewControllerLayoutGuide type="bottom" id="wKJ-NZ-FKH"/>
@@ -583,6 +619,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="areaTableView" destination="zV3-Wc-muE" id="zcX-JA-AQP"/>
+                        <outlet property="threadTit" destination="nqV-iw-nqX" id="xqa-0H-4h4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skM-Ew-Nud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

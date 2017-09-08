@@ -9,7 +9,11 @@
 import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
+    @IBAction func settings(_ sender: UIButton) {
+    }
+    @IBOutlet weak var name: UILabel!
 
+    @IBOutlet weak var dateCreated: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -36,10 +36,15 @@
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
+		<string>Privacy - Location When In Use Usage Description</string>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Request permission to use location service when the apps is in background</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Request permission to use location service</string>
 </dict>
 </plist>

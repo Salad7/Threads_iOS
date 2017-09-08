@@ -11,7 +11,9 @@ import Foundation
 class Message{
     var upvotes = 0
     var msg = ""
-    var anonChart = [String:String]()
+    var replies = 0
+    var timeStamp = Date()
+    //var anonChart = [String:String]()
     var hostUID = ""
     
     func setUpvotes(u :Int){
@@ -21,10 +23,16 @@ class Message{
     func setMsg(m :String){
         msg = m
     }
-    
-    func setAnonChart(a :[String:String]) {
-        anonChart = a
+    func setReplies(r :Int){
+        replies = r
     }
+    func setTimeStamp(t :Date){
+        timeStamp = t
+    }
+    
+//    func setAnonChart(a :[String:String]) {
+//        anonChart = a
+//    }
 
     func setHostUID(h :String){
         hostUID = h
@@ -38,11 +46,18 @@ class Message{
         return msg
     }
     
-    func getAnonChart() -> [String:String] {
-        return anonChart
-    }
+//    func getAnonChart() -> [String:String] {
+//        return anonChart
+//    }
     
     func getHostUID() -> String {
         return hostUID
+    }
+    func getReplies() -> Int {
+        return replies
+    }
+    
+    func getTimeStamp() -> Date {
+        return timeStamp
     }
 }

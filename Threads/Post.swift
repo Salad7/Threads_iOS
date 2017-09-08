@@ -10,7 +10,7 @@ import Foundation
 
 
 class Post {
-    var ucode = ""
+    var position = 0
     var upvotes = 0
     var messages = [Message]()
     var replies = 0
@@ -25,8 +25,8 @@ class Post {
         
     }
     
-    func setUcode(u :String){
-        ucode = u
+    func setPosition(p :Int){
+        position = p
     }
     func setUpvotes(up :Int){
         upvotes = up
@@ -53,8 +53,8 @@ class Post {
         anonCode = a
     }
     
-    func getUcode() -> String {
-        return ucode
+    func getPostion() -> Int {
+        return position
     }
     
     func getUpvotes() -> Int {

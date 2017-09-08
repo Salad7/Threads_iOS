@@ -7,3 +7,28 @@
 //
 
 import Foundation
+
+
+class Anon {
+    var postCount = 0
+    var threads = [Thread]()
+    
+    init(){
+        
+    }
+    
+    init(pC :Int, t :[Thread]){
+        postCount = pC
+        threads = t
+    }
+    
+    func getPostCount() -> Int{
+        return postCount
+    }
+    
+    func getThreads() -> [Thread]{
+        return threads
+    }
+    
+    
+}

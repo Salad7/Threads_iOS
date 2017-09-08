@@ -18,6 +18,7 @@ class Post {
     var postTitle = ""
     var parent = ""
     var hostUID = ""
+    var anonCode = [String:String]()
     
     
     init(){
@@ -47,6 +48,9 @@ class Post {
     }
     func setHostUID(uid :String){
         hostUID = uid
+    }
+    func setAnonCode(a :[String:String]){
+        anonCode = a
     }
     
     func getUcode() -> String {
@@ -79,6 +83,10 @@ class Post {
     
     func getHostUID() -> String {
         return hostUID
+    }
+    
+    func getAnonCode() -> [String:String]{
+        return anonCode
     }
     
     

@@ -14,6 +14,7 @@ class Thread {
     var anons = [String]()
     var posts = [Post]()
     
+    
     init(){
         
     }

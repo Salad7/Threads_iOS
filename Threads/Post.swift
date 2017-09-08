@@ -17,6 +17,7 @@ class Post {
     var timeStamp = Date()
     var postTitle = ""
     var parent = ""
+    var hostUID = ""
     
     
     init(){
@@ -43,6 +44,9 @@ class Post {
     }
     func setParent(pa :String){
         parent = pa
+    }
+    func setHostUID(uid :String){
+        hostUID = uid
     }
     
     func getUcode() -> String {
@@ -71,6 +75,10 @@ class Post {
     
     func getParent() -> String {
         return parent
+    }
+    
+    func getHostUID() -> String {
+        return hostUID
     }
     
     

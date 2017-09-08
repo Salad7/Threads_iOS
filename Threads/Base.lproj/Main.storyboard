@@ -136,7 +136,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="8Zn-6p-MRL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="8Zn-6p-MRL" customClass="LocalTableViewCell" customModule="Threads" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Zn-6p-MRL" id="ndX-88-tXc">
@@ -175,6 +175,9 @@
                                                     <rect key="frame" x="22" y="30" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="navigate-up-arrow"/>
+                                                    <connections>
+                                                        <action selector="upvote:" destination="8Zn-6p-MRL" eventType="touchUpInside" id="Yru-tJ-DFS"/>
+                                                    </connections>
                                                 </button>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcS-lP-KBe">
                                                     <rect key="frame" x="19" y="69" width="24" height="24"/>
@@ -188,6 +191,12 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="elapsedTime" destination="Sc1-C7-7DK" id="cG9-0S-R1S"/>
+                                            <outlet property="message" destination="2mU-UN-f5g" id="fuc-PJ-CNh"/>
+                                            <outlet property="replies" destination="pae-JS-QDm" id="guV-vP-9jy"/>
+                                            <outlet property="upvoteTxt" destination="2mU-UN-f5g" id="ZYg-xt-HZg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

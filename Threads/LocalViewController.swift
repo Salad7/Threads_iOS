@@ -88,7 +88,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                     //print("test fail2")
 
                     
-               self.topics = (snapshot.childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").value as? [Topics])!
+//               self.topics = (snapshot.childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").value as? [Topics])!
                     //print("test fail3")
 
                    }
@@ -137,7 +137,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["replies":t.getReplies()])
     self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvotes":t.getUpvotes()])
     self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":t.getAnonCode()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["postTitle":t.getPostTitle()])
+    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":t.getTopicTitle()])
     self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":t.getTimeStamp()])
 
     }

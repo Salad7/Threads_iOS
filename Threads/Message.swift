@@ -12,7 +12,7 @@ class Message{
     var upvotes = 0
     var msg = ""
     var replies = 0
-    var timeStamp = Date()
+    var timeStamp = UInt64()
     //var anonChart = [String:String]()
     var hostUID = ""
     
@@ -26,7 +26,7 @@ class Message{
     func setReplies(r :Int){
         replies = r
     }
-    func setTimeStamp(t :Date){
+    func setTimeStamp(t :UInt64){
         timeStamp = t
     }
     
@@ -57,7 +57,7 @@ class Message{
         return replies
     }
     
-    func getTimeStamp() -> Date {
+    func getTimeStamp() -> UInt64 {
         return timeStamp
     }
 }

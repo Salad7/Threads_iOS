@@ -14,7 +14,7 @@ import Firebase
 class ViewController: UIViewController {
 let locationManager = CLLocationManager()
     var threadRef: DatabaseReference!
-
+    var pureKey = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,11 +32,12 @@ let locationManager = CLLocationManager()
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        let locValue = locationManager.location?.coordinate
-//        print("locations = \(String(describing: locValue?.latitude)) \(String(describing: locValue?.longitude))")
-        displayAlert()
         addListenerForThreads()
+        searchIfThreadExistsInFirebase()
+        //displayAlert()
+        
     }
+    
     
     func addListenerForThreads(){
         //If the current users range is with in the legitimate bounds
@@ -63,9 +64,40 @@ let locationManager = CLLocationManager()
         
         var pureKey = pos1[0]+"!"+pos1[1] + "-" + pos2[0]+"!"+pos2[1]
         print(pureKey)
-        threadRef.child("Threads").updateChildValues([pureKey :thread.getThreadTitle()])
+    //threadRef.child("Threads").updateChildValues([pureKey :thread.getThreadTitle()])
+        threadRef.child("Threads").child(pureKey).updateChildValues(["threadTitle" :thread.getThreadTitle()])
         
     
+    }
+    
+    func searchIfThreadExistsInFirebase(){
+        let lat = Double((locationManager.location?.coordinate.latitude)!)
+        let lon = Double((locationManager.location?.coordinate.longitude)!)
+        var pos1 = String(lon).components(separatedBy: ".")
+        var pos2 = String(lat).components(separatedBy: ".")
+        
+         pureKey = pos1[0]+"!"+pos1[1] + "-" + pos2[0]+"!"+pos2[1]
+        
+        _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
+            //If we find that the user is in an existant thread
+            if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: self.pureKey).exists()){
+                //print("pooop")
+                SwiftSpinner.hide()
+                self.performSegue(withIdentifier: "show_tabbar", sender: nil)
+            }
+            
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "show_tabbar"){
+            //print("passing stuff")
+            let v = segue.destination as! TabbarViewController
+            v.threadCode = self.pureKey
+            let defaults = UserDefaults.standard
+            defaults.set(self.pureKey, forKey: "threadCode")
+           
+        }
     }
     
     func getThreadsNearMe(lo :Double, la :Double) -> [LonLat] {
@@ -93,16 +125,17 @@ let locationManager = CLLocationManager()
     
     override func viewDidAppear(_ animated: Bool) {
         
-        DispatchQueue.main.async(execute: {
-            SwiftSpinner.show("Finding nearest thread...")
-        for i in 0 ... 200001 {
-        //print(String(i))
-            if(i == 200000){
-                SwiftSpinner.hide()
-            }
-        }
+        //DispatchQueue.main.async(execute: {
+            SwiftSpinner.show("Finding thread...")
+            //SwiftSpinner.show(duration: 2.0, title: "Finding nearest thread...")
+//        for i in 0 ... 200001 {
+//        //print(String(i))
+//            if(i == 200000){
+//                SwiftSpinner.hide()
+//            }
+//        }
             
-        })
+        //})
     }
     
     

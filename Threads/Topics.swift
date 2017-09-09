@@ -1,18 +1,16 @@
 //
-//  Post.swift
+//  Topics.swift
 //  Threads
 //
-//  Created by cci-loaner on 9/8/17.
+//  Created by cci-loaner on 9/9/17.
 //  Copyright © 2017 YurpInc. All rights reserved.
 //
 
 import Foundation
-
-
-class Post {
+class Topics {
     var position = 0
     var upvotes = 0
-    var messages = [Message]()
+    var topicTitle = ""
     var replies = 0
     var timeStamp = UInt64()
     var postTitle = ""
@@ -31,8 +29,8 @@ class Post {
     func setUpvotes(up :Int){
         upvotes = up
     }
-    func setMessages(m :[Message]){
-        messages = m
+    func setTopicTitle(m :String){
+        topicTitle = m
     }
     func setReplies(r :Int){
         replies = r
@@ -61,8 +59,8 @@ class Post {
         return upvotes
     }
     
-    func getMessages() -> [Message] {
-        return messages
+    func getTopicTitle() -> String {
+        return topicTitle
     }
     
     func getReplies() -> Int {
@@ -88,6 +86,4 @@ class Post {
     func getAnonCode() -> [String:String]{
         return anonCode
     }
-    
-    
 }

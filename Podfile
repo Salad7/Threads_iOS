@@ -7,6 +7,7 @@ target 'Threads' do
   use_frameworks!
 	pod "SwiftSpinner"
     pod "Firebase/Database"
+    pod 'PopupDialog', '~> 0.5'
 
   # Pods for Threads
 

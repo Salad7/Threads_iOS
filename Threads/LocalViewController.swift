@@ -8,10 +8,41 @@
 
 import UIKit
 import Firebase
+import PopupDialog
 
 class LocalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+    @IBOutlet weak var subContent: UIView!
     
     @IBAction func postBtn(_ sender: UIButton) {
+        
+        
+        let alert = UIAlertController(title: "Create new thread",
+                                      message: "What's on your mind",
+                                      preferredStyle: .alert)
+        
+        // Submit button
+        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
+            // Get 1st TextField's text
+            let textField = alert.textFields![0]
+            print(textField.text!)
+        })
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardAppearance = .dark
+            textField.keyboardType = .default
+            textField.autocorrectionType = .default
+            textField.placeholder = "Type something here"
+            textField.clearButtonMode = .whileEditing
+        }
+        // Add action buttons and present the Alert
+        alert.addAction(submitAction)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+        
+
     }
     @IBAction func inviteBtn(_ sender: UIButton) {
     }
@@ -27,6 +58,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         localTableView.delegate = self
         localTableView.dataSource = self
         localRef = Database.database().reference()
+        
         
         
         // Do any additional setup after loading the view.

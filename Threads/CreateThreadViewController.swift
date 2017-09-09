@@ -9,6 +9,8 @@
 import UIKit
 
 class CreateThreadViewController: UIViewController {
+    @IBOutlet weak var view_ui: UIView!
+    
     @IBAction func submitBtn(_ sender: UIButton) {
     }
     @IBOutlet weak var threadNameField: UITextField!

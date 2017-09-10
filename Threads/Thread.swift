@@ -10,10 +10,8 @@ import Foundation
 
 class Thread {
     var threadTitle = ""
-    var name = ""
     var anons = [String]()
-    var posts = [Post]()
-    
+    var topics = [Topics]()
     
     init(){
         
@@ -23,32 +21,27 @@ class Thread {
         threadTitle = t
     }
     
-    func setName(n :String){
-        name = n
-    }
-    
+   
     func setAnons(a :[String]) {
         anons = a
     }
     
-    func setPosts(p :[Post]) {
-        posts = p
+    func setTopics(tp :[Topics]) {
+        topics = tp
     }
     
     func getThreadTitle() -> String {
         return threadTitle
     }
     
-    func getName() -> String {
-        return name
-    }
+ 
     
     func getAnons() -> [String] {
         return anons
     }
     
-    func getPosts() -> [Post] {
-        return posts
+    func getTopics() -> [Topics] {
+        return topics
     }
     
     

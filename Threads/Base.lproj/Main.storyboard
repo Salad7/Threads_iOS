@@ -22,10 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BN4-ao-fTK">
-                                <rect key="frame" x="96" y="138" width="183" height="30"/>
+                                <rect key="frame" x="56" y="514" width="263" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Joining Thread..."/>
+                                <state key="normal" title="Join this rooms thread"/>
+                                <connections>
+                                    <action selector="joinThread:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0m9-6r-dWV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -37,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="780"/>
+            <point key="canvasLocation" x="2213.5999999999999" y="779.46026986506752"/>
         </scene>
         <!--Tabbar View Controller-->
         <scene sceneID="GZx-w2-jKJ">
@@ -104,7 +107,7 @@
                                         <rect key="frame" x="38" y="254" width="221" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="Continue &amp; Invite friends"/>
+                                        <state key="normal" title="Continue"/>
                                         <connections>
                                             <action selector="submitBtn:" destination="aJH-DP-v3w" eventType="touchUpInside" id="R9j-Wx-3Bq"/>
                                         </connections>
@@ -136,6 +139,7 @@
                     <connections>
                         <outlet property="threadNameField" destination="Jfq-Le-u4Q" id="Pa6-7O-9tZ"/>
                         <outlet property="view_ui" destination="yXu-am-PJ7" id="DA1-gg-oya"/>
+                        <segue destination="3mD-rG-X7c" kind="show" identifier="show_local" id="A18-pG-8iV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcH-Xe-FSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -669,4 +673,7 @@
         <image name="send" width="64" height="64"/>
         <image name="settings(1)" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="A18-pG-8iV"/>
+    </inferredMetricsTieBreakers>
 </document>

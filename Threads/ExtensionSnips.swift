@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 class ExtensioncLIPS{
     
 }
@@ -15,3 +17,8 @@ extension Date {
         return UInt64(self.timeIntervalSince1970 * 1000)
     }
 }
+extension String {
+        func getUID() -> String {
+            return UIDevice.current.identifierForVendor!.uuidString
+        }
+    }

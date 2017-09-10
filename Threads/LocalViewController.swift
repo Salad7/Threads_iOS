@@ -87,23 +87,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                    {
                     //print("test fail2")
 
-                    
-//               self.topics = (snapshot.childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").value as? [Topics])!
-                    //print("test fail3")
 
                    }
-                else{
-                    var t = Topics.init()
-                    t.setParent(pa: self.threadCode)
-                    t.setReplies(r: 0)
-                    t.setUpvotes(up: 50)
-                    t.setPosition(p: 0)
-                    t.setAnonCode(a: [UIDevice.current.identifierForVendor!.uuidString:"red"])
-                    t.setTimeStamp(t: Date().toMillis())
-                    t.setHostUID(uid: UIDevice.current.identifierForVendor!.uuidString)
-                    t.setTopicTitle(m: "Hello World")
-                    self.createFirstPostAutomatically(t: t)
-                    }
+            
             }
             self.localTableView.reloadData()
         })

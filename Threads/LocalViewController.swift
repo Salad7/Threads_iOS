@@ -83,9 +83,24 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             print("Threads")
             print(self.threadCode)
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
+                let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
+                self.threadTit.text = threadPath.childSnapshot(forPath: "threadTitle").value as! String
+
                 if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").exists())
                    {
-                    //print("test fail2")
+                      let topicPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics")
+                    for i in 0 ... FirebaseCounter().MAX_TOPICS {
+                        let totalTopics = Int(topicPath.childrenCount)
+                        var topicsFound = 0
+                        if(topicPath.childSnapshot(forPath: String(i)).exists() && totalTopics >= topicsFound){
+                            let specificThreadPath = topicPath.childSnapshot(forPath: String(i))
+//                            self.threadTit.text = specificThreadPath.childSnapshot(forPath: "threadTitle").value as! String
+                            topicsFound = topicsFound + 1
+                        }
+                        
+                    }
+                  
+                    
 
 
                    }
@@ -116,17 +131,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
-    func createFirstPostAutomatically(t :Topics){
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":t.getParent()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["UID":t.getHostUID()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["position":t.getPostion()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["replies":t.getReplies()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvotes":t.getUpvotes()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":t.getAnonCode()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":t.getTopicTitle()])
-    self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":t.getTimeStamp()])
-
-    }
+    
     
 
     /*

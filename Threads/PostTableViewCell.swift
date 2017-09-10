@@ -9,12 +9,12 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    @IBOutlet weak var anonIcon: UIImageView!
     @IBOutlet weak var upvotes: UILabel!
     @IBOutlet weak var message: UILabel!
     @IBAction func upvoteBtn(_ sender: UIButton) {
     }
-    @IBOutlet weak var icon: UIImageView!
-
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

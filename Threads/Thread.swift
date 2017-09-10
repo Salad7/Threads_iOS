@@ -13,6 +13,7 @@ class Thread {
     var anons = [String]()
     var topics = [Topics]()
     
+    
     init(){
         
     }

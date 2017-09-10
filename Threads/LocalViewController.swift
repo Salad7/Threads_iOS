@@ -54,6 +54,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     var topics = [Topics]()
     let defaults = UserDefaults.standard
     var threadCode = ""
+    var positionHit = 10
     override func viewDidLoad() {
         super.viewDidLoad()
         localTableView.delegate = self
@@ -137,23 +138,36 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegue(withIdentifier: "show_post", sender: indexPath)
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        positionHit = indexPath.row
+        DispatchQueue.main.async(execute: {
+            self.performSegue(withIdentifier: "show_post", sender: indexPath)
+            print("hit")
+        })
+
+        
+        
     }
     
     
-    
+     //MARK: - Navigation
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     //In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if(segue.identifier == "show_post"){
+            let vc = segue.destination as! PostViewController
+            let topic = self.topics[positionHit]
+            //print(topic.getMessages())
+            //print("threadTitle " + "dsadasdas " + vc.threadTitle.text! )
+            vc.threadt = threadTit.text!///
+            vc.msg = topic.getTopicTitle()
+            vc.up = String(topic.getUpvotes())
+            vc.reps = String(topic.getReplies())
+            vc.time = String(topic.getTimeStamp())
+        }
     }
-    */
+    
 
 }

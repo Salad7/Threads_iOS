@@ -16,6 +16,7 @@ class Topics {
     var parent = ""
     var hostUID = ""
     var anonCode = [String:String]()
+    var messages = [Message]()
     
     
     init(){
@@ -24,6 +25,12 @@ class Topics {
     
     func setPosition(p :Int){
         position = p
+    }
+    func setMessages(me :[Message]){
+     messages = me
+    }
+    func getMessages() -> [Message] {
+        return messages
     }
     func setUpvotes(up :Int){
         upvotes = up

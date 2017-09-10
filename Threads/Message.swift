@@ -13,11 +13,25 @@ class Message{
     var msg = ""
     var replies = 0
     var timeStamp = UInt64()
+    var position = 0
+    var anonCode = [String:String]()
     //var anonChart = [String:String]()
     var hostUID = ""
     
     func setUpvotes(u :Int){
         upvotes = u
+    }
+    
+    func setAnonCode(a :[String:String]){
+        anonCode = a
+    }
+    
+    func getAnonCode() -> [String:String] {
+        return anonCode
+    }
+    
+    func setPosition(p :Int){
+        position = p
     }
     
     func setMsg(m :String){
@@ -36,6 +50,10 @@ class Message{
 
     func setHostUID(h :String){
         hostUID = h
+    }
+    
+    func getPosition() -> Int{
+        return position
     }
     
     func getUpvotes() -> Int {

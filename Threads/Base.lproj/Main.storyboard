@@ -339,7 +339,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="62" id="6hU-OG-jGY" customClass="PostTableViewCell" customModule="Threads" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="post_cell" rowHeight="62" id="6hU-OG-jGY" customClass="PostTableViewCell" customModule="Threads" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6hU-OG-jGY" id="9N3-MW-sZH">
@@ -375,7 +375,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="icon" destination="b47-Mm-oNu" id="jhD-Rp-auq"/>
+                                            <outlet property="anonIcon" destination="b47-Mm-oNu" id="4OA-L0-bTc"/>
                                             <outlet property="message" destination="XvQ-bK-1UA" id="WEk-uj-ble"/>
                                             <outlet property="upvotes" destination="fiH-o2-XML" id="AYE-75-XIp"/>
                                         </connections>
@@ -415,7 +415,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztE-hD-rxI">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztE-hD-rxI">
                                         <rect key="frame" x="21" y="30" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" backgroundImage="navigate-up-arrow"/>
@@ -464,7 +464,7 @@
                     </view>
                     <connections>
                         <outlet property="message" destination="eDH-Zo-hHX" id="6tG-Z0-zU1"/>
-                        <outlet property="postTableView" destination="RVJ-cp-BhV" id="uDg-5O-NbQ"/>
+                        <outlet property="postTableView" destination="RVJ-cp-BhV" id="sPb-eE-J7P"/>
                         <outlet property="replies" destination="Dpq-y3-SCj" id="59c-zp-nNx"/>
                         <outlet property="textView" destination="IXQ-ga-UwP" id="Pv2-b3-QvE"/>
                         <outlet property="threadTitle" destination="9Jb-Au-pa3" id="SQA-5g-X3l"/>

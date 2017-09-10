@@ -170,7 +170,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="8Zn-6p-MRL" customClass="LocalTableViewCell" customModule="Threads" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="local_cell" rowHeight="122" id="8Zn-6p-MRL" customClass="LocalTableViewCell" customModule="Threads" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Zn-6p-MRL" id="ndX-88-tXc">
@@ -231,7 +231,6 @@
                                             <outlet property="message" destination="2mU-UN-f5g" id="MGl-PZ-UtD"/>
                                             <outlet property="replies" destination="pae-JS-QDm" id="MBC-3g-IyN"/>
                                             <outlet property="upvote" destination="rpH-SN-6XF" id="aaq-dF-Nlo"/>
-                                            <outlet property="upvoteTxt" destination="2mU-UN-f5g" id="ZYg-xt-HZg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -259,6 +258,7 @@
                     <connections>
                         <outlet property="localTableView" destination="WEe-EU-bot" id="daw-BX-Qne"/>
                         <outlet property="threadTit" destination="Bke-3d-1q9" id="SOe-RX-GVi"/>
+                        <segue destination="6SD-5a-VXs" kind="show" identifier="show_post" id="heU-BI-6dw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILR-XA-QZd" userLabel="First Responder" sceneMemberID="firstResponder"/>

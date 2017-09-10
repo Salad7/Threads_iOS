@@ -94,7 +94,17 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                         var topicsFound = 0
                         if(topicPath.childSnapshot(forPath: String(i)).exists() && totalTopics >= topicsFound){
                             let specificThreadPath = topicPath.childSnapshot(forPath: String(i))
-//                            self.threadTit.text = specificThreadPath.childSnapshot(forPath: "threadTitle").value as! String
+                            var topic = Topics()
+                            
+                            topic.setTopicTitle(tp: specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String)
+                            topic.setPosition(p: specificThreadPath.childSnapshot(forPath: "position").value as! Int)
+                            topic.setUpvotes(up: specificThreadPath.childSnapshot(forPath: "upvotes").value as! Int)
+                            topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
+                            topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                            topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
+                            topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
+                            topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
+                            self.topics.append(topic)
                             topicsFound = topicsFound + 1
                         }
                         
@@ -117,10 +127,11 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         var cell = tableView.dequeueReusableCell(withIdentifier: "local_cell") as! LocalTableViewCell
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
         cell.replies.text = String(self.topics[indexPath.row].getReplies())
-        cell.upvote.text = String(self.topics[indexPath.row].getUpvotes())
+        cell.upvote.text = String(String(self.topics[indexPath.row].getUpvotes()))
         cell.elapsedTime.text = String(describing: self.topics[indexPath.row].getTimeStamp())
         return cell
     }

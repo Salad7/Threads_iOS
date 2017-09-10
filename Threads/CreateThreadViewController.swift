@@ -59,6 +59,7 @@ class CreateThreadViewController: UIViewController {
         topic.setReplies(r: 0)
         topic.setUpvotes(up: 50)
         topic.setPosition(p: 0)
+        topic.setTopicTitle(tp: "Hello World")
         let u = ""
         topic.setAnonCode(a: [u.getUID():"red"])
         topic.setTimeStamp(t: Date().toMillis())

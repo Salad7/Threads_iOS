@@ -13,7 +13,6 @@ class Topics {
     var topicTitle = ""
     var replies = 0
     var timeStamp = UInt64()
-    var postTitle = ""
     var parent = ""
     var hostUID = ""
     var anonCode = [String:String]()
@@ -29,17 +28,14 @@ class Topics {
     func setUpvotes(up :Int){
         upvotes = up
     }
-    func setTopicTitle(m :String){
-        topicTitle = m
+    func setTopicTitle(tp :String){
+        topicTitle = tp
     }
     func setReplies(r :Int){
         replies = r
     }
     func setTimeStamp(t :UInt64){
         timeStamp = t
-    }
-    func setPostTitle(p :String){
-        postTitle = p
     }
     func setParent(pa :String){
         parent = pa
@@ -71,9 +67,7 @@ class Topics {
         return timeStamp
     }
     
-    func getPostTitle() -> String{
-        return postTitle
-    }
+   
     
     func getParent() -> String {
         return parent

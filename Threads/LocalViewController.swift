@@ -130,9 +130,10 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "local_cell") as! LocalTableViewCell
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
-        cell.replies.text = String(self.topics[indexPath.row].getReplies())
+        cell.replies.text = String(self.topics[indexPath.row].getReplies()) + " replies"
         cell.upvote.text = String(String(self.topics[indexPath.row].getUpvotes()))
         cell.elapsedTime.text = String(describing: self.topics[indexPath.row].getTimeStamp())
+        print("wired cell as "+cell.elapsedTime.text!)
         return cell
     }
     

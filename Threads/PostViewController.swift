@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 import Letters
 class PostViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBAction func `return`(_ sender: UIButton) {
+        
+    }
     
     @IBOutlet weak var threadTitle: UILabel!
     @IBOutlet weak var message: UILabel!
@@ -20,6 +23,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var upvotes: UILabel!
     @IBOutlet weak var userIcon: UIImageView!
     @IBAction func returnBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "show_tab", sender: nil)
     }
     //@IBOutlet weak var postTableView: UITableView!
     @IBAction func sendBtn(_ sender: UIButton) {
@@ -79,7 +83,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         message.text = msg
         timeElapsed.text = time
         upvotes.text = up
-        replies.text = reps
+        replies.text = reps + " replies"
         loadPosts()
         
         // Do any additional setup after loading the view.

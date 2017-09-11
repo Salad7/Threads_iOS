@@ -452,6 +452,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="left-arrow(3)"/>
                                 <connections>
+                                    <action selector="return:" destination="6SD-5a-VXs" eventType="touchUpInside" id="1lu-aI-ycm"/>
                                     <action selector="returnBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="WxT-FT-KJw"/>
                                 </connections>
                             </button>
@@ -471,6 +472,7 @@
                         <outlet property="timeElapsed" destination="KEU-NZ-FyK" id="XRF-pe-VM3"/>
                         <outlet property="upvotes" destination="B2o-Ys-MCL" id="CVT-yq-wOv"/>
                         <outlet property="userIcon" destination="lh3-uX-idQ" id="V60-EG-d3V"/>
+                        <segue destination="aDA-XV-XZ4" kind="show" identifier="show_tab" id="sg3-K1-GG0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPT-r4-UOa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -675,5 +677,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="A18-pG-8iV"/>
+        <segue reference="sg3-K1-GG0"/>
     </inferredMetricsTieBreakers>
 </document>

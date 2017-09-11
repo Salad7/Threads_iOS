@@ -36,8 +36,6 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             //var currentMessages = messages
             let message = Message()
             message.setMsg(m: self.textView.text)
-        //print("thread code is " + threadCode)
-            //print(self.topicPosition)
             message.setHostUID(h: "".getUID())
             message.setReplies(r: 0)
             message.setUpvotes(u: 0)
@@ -52,6 +50,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             newMessagePath.updateChildValues(["position":message.getPosition()])
             newMessagePath.child("anonCode").updateChildValues(["".getUID():"red"])
             self.textView.text = ""
+            //self.replies.text = String(message.replies + 1)
             print("done with stuff")
             self.postRef.removeAllObservers()
             self.loadPosts()
@@ -83,8 +82,9 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         message.text = msg
         timeElapsed.text = time
         upvotes.text = up
-        replies.text = reps + " replies"
+        
         loadPosts()
+        userIcon.setImage(string: "D",color: nil,circular: true)
         
         // Do any additional setup after loading the view.
     }
@@ -92,15 +92,13 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
 
     func loadPosts(){
-        _ = postRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        _ = postRef.observe(DataEventType.value, with: { (snapshot) in
             
             var currentLowest = -1
             //1
             self.messages.removeAll()
             print("loading posts")
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
-                //print(" thread path exists exists")
-
                 let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
                 //2
                 if(threadPath.childSnapshot(forPath: "topics").exists())
@@ -116,6 +114,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         var messagesFound = 0
                         //4
                         for i in 0 ... FirebaseCounter().MAX_MESSAGES_PER_TOPIC {
+                            self.replies.text = String(messagesPath.childrenCount) + " replies"
                             //5
                             if(messagesPath.childSnapshot(forPath: String(i)).exists() && totalMessages >= messagesFound ){
                                 

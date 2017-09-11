@@ -24,6 +24,7 @@ class CreateThreadViewController: UIViewController {
             //Create thread
             threadRef.child("Threads").child(threadCode).updateChildValues(["threadTitle" :t.getThreadTitle()])
             threadRef.child("Threads").child(threadCode).updateChildValues(["anons" :t.getAnons()])
+            self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["position":0])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":topic.getParent()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["UID":topic.getHostUID()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["position":topic.getPostion()])

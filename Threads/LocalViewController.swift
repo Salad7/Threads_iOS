@@ -11,7 +11,8 @@ import Firebase
 import PopupDialog
 
 class LocalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
-   
+   var topicPosition = 0
+   var currentLowest = -1
     
     @IBAction func postBtn(_ sender: UIButton) {
         
@@ -22,9 +23,24 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Submit button
         let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
-            // Get 1st TextField's text
-            let textField = alert.textFields![0]
-            print(textField.text!)
+
+                print("thread code is " + self.threadCode)
+            self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["threadTitle" :self.threadTit.text!])
+            self.threadRef.child("Threads").child(self.threadCode).child("anonCode").updateChildValues(["".getUID():"red"])
+            
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).child("anonCode").updateChildValues(["".getUID():"red"])
+            
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["parent":self.defaults.string(forKey: "threadCode")])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["UID":"".getUID()])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["position":self.topicPosition])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["replies":0])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["upvotes":0])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["topicTitle": alert.textFields![0].text])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
+            self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["UIDs" :"".getUID()])
+            self.threadRef.removeAllObservers()
+            self.addFirebaseLocalThreads()
+           
         })
         
         // Cancel button
@@ -50,6 +66,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var threadTit: UILabel!
 
     var threadRef: DatabaseReference!
+    var firstOpenSpotInTopics = -99
     
     var topics = [Topics]()
     let defaults = UserDefaults.standard
@@ -64,11 +81,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         addFirebaseLocalThreads()
         
         
-        // Do any additional setup after loading the view.
-    }
-    
-    func loadLocalPosts(){
         
+        // Do any additional setup after loading the view.
     }
     
 
@@ -77,46 +91,58 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    //1
     func addFirebaseLocalThreads(){
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
-           
-            //If a local thread exists
-            //print("Threads")
-            //print(self.threadCode)
+           self.topics.removeAll()
+            //1
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
                 let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
-                self.threadTit.text = threadPath.childSnapshot(forPath: "threadTitle").value as! String
-
+                self.threadTit.text = threadPath.childSnapshot(forPath: "threadTitle").value as? String
+                //2
                 if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").exists())
                    {
                       let topicPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics")
+                    //3
                     for i in 0 ... FirebaseCounter().MAX_TOPICS {
                         let totalTopics = Int(topicPath.childrenCount)
                         var topicsFound = 0
+                        //4
                         if(topicPath.childSnapshot(forPath: String(i)).exists() && totalTopics >= topicsFound){
                             let specificThreadPath = topicPath.childSnapshot(forPath: String(i))
                             var topic = Topics()
-                            
-                            topic.setTopicTitle(tp: specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String)
+                            topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
+                            topic.setTopicTitle(tp: (specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String))
                             topic.setPosition(p: specificThreadPath.childSnapshot(forPath: "position").value as! Int)
                             topic.setUpvotes(up: specificThreadPath.childSnapshot(forPath: "upvotes").value as! Int)
                             topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
                             topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
-                            topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             self.topics.append(topic)
                             topicsFound = topicsFound + 1
+                        }//4
+                        else if(self.firstOpenSpotInTopics == -99){
+                                self.defaults.set(i, forKey:"firstOpenSpotInTopics" )
+                                self.firstOpenSpotInTopics = self.defaults.integer(forKey: "firstOpenSpotInTopics")
+                            self.topicPosition = self.firstOpenSpotInTopics
+                            }
+                        else {
+                            self.firstOpenSpotInTopics = self.defaults.integer(forKey: "firstOpenSpotInTopics")
+                            self.topicPosition = self.firstOpenSpotInTopics
+
                         }
                         
-                    }
+                        
+                        
+                    }//3
                   
                     
 
 
-                   }
+                   }//2
             
-            }
+            }//1
             self.localTableView.reloadData()
         })
 
@@ -151,10 +177,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
-    func removeListener(){
-        threadRef.removeAllObservers()
-    }
-    
+   
     
      //MARK: - Navigation
 
@@ -172,7 +195,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
             //self.dismiss(animated: true, completion: nil)
-            removeListener()
+            threadRef.removeAllObservers()
         }
     }
     

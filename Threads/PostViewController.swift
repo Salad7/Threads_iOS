@@ -23,6 +23,38 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     //@IBOutlet weak var postTableView: UITableView!
     @IBAction func sendBtn(_ sender: UIButton) {
+        
+        DispatchQueue.main.async(execute: {
+        //if we enter something in our message
+        if(self.textView.text.characters.count > 0){
+            let newMessagePath = self.postRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).child("messages").child(String(self.messagePosition))
+            //print("sendBtn")
+            //var currentMessages = messages
+            let message = Message()
+            message.setMsg(m: self.textView.text)
+        //print("thread code is " + threadCode)
+            //print(self.topicPosition)
+            message.setHostUID(h: "".getUID())
+            message.setReplies(r: 0)
+            message.setUpvotes(u: 0)
+            message.setTimeStamp(t: Date().toMillis())
+            message.setAnonCode(a: ["".getUID():"blue"])
+            //currentMessages.append(message)
+            newMessagePath.updateChildValues(["UID":message.getHostUID()])
+            newMessagePath.updateChildValues(["timeStamp":message.getTimeStamp()])
+            newMessagePath.updateChildValues(["upvotes":message.getUpvotes()])
+            newMessagePath.updateChildValues(["replies":message.getReplies()])
+            newMessagePath.updateChildValues(["message":message.getMsg()])
+            newMessagePath.updateChildValues(["position":message.getPosition()])
+            newMessagePath.child("anonCode").updateChildValues(["".getUID():"red"])
+            self.textView.text = ""
+            print("done with stuff")
+            self.postRef.removeAllObservers()
+            self.loadPosts()
+            }
+        })
+      //Threads--Topics--TopicPosition--Messages--MessagesPosition--update
+        
     }
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var postTableView: UITableView!
@@ -35,9 +67,11 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var reps = ""
     var time = ""
     var up = ""
-    var topicPosition = 0
+    var topicPosition = 999
+    var messagePosition = 999
     override func viewDidLoad() {
         super.viewDidLoad()
+        threadCode = defaults.string(forKey: "threadCode")!
         postTableView.dataSource = self
         postTableView.delegate = self
         postRef = Database.database().reference()
@@ -46,33 +80,44 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         timeElapsed.text = time
         upvotes.text = up
         replies.text = reps
-
+        loadPosts()
+        
         // Do any additional setup after loading the view.
     }
+    
+    
 
     func loadPosts(){
-        _ = postRef.observe(DataEventType.value, with: { (snapshot) in
+        _ = postRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
+            var currentLowest = -1
             //1
+            self.messages.removeAll()
+            print("loading posts")
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
-              
+                //print(" thread path exists exists")
+
                 let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
                 //2
                 if(threadPath.childSnapshot(forPath: "topics").exists())
                 {
+                    //print(" topic path exists")
                     let topicPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics")
+                    //print("topic position " + String(self.topicPosition))
                     //3
                     if(topicPath.childSnapshot(forPath: String(self.topicPosition)).childSnapshot(forPath: "messages").exists()){
                         let messagesPath = topicPath.childSnapshot(forPath: String(self.topicPosition)).childSnapshot(forPath: "messages")
                         let totalMessages = Int(messagesPath.childrenCount)
+                        //print("total messages" + String(totalMessages))
                         var messagesFound = 0
                         //4
                         for i in 0 ... FirebaseCounter().MAX_MESSAGES_PER_TOPIC {
                             //5
-                            if(messagesPath.childSnapshot(forPath: String(i)).exists() && totalMessages >= messagesFound){
+                            if(messagesPath.childSnapshot(forPath: String(i)).exists() && totalMessages >= messagesFound ){
+                                
                             let specificMessagePath = messagesPath.childSnapshot(forPath: String(i))
-                            var message = Message()
-                            
+                                if(specificMessagePath.childSnapshot(forPath: "anonCode").value as? [String:String] != nil){
+                            let message = Message()
                             message.setMsg(m: specificMessagePath.childSnapshot(forPath: "message").value as! String)
                             message.setPosition(p: specificMessagePath.childSnapshot(forPath: "position").value as! Int)
                             message.setUpvotes(u: specificMessagePath.childSnapshot(forPath: "upvotes").value as! Int)
@@ -81,9 +126,25 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             message.setAnonCode(a: specificMessagePath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             self.messages.append(message)
                             messagesFound = messagesFound + 1
+                                }
                             }//5
+                            //else if we find lowest open positon
+                            else {
+                                if(currentLowest == -1){
+                                   // print("lowest we found was " + String(self.messagePosition))
+                                    currentLowest = i
+                                    self.messagePosition = i
+                                }
+                                else if(i < self.messagePosition){
+                                   // currentLowest = i
+                                }
+                            }
                         }//4
                     }//3
+                    else{
+                        //no messages
+                        self.messagePosition = 0
+                    }
                 }//2
             }//1
             self.postTableView.reloadData()

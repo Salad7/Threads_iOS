@@ -81,8 +81,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
            
             //If a local thread exists
-            print("Threads")
-            print(self.threadCode)
+            //print("Threads")
+            //print(self.threadCode)
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
                 let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
                 self.threadTit.text = threadPath.childSnapshot(forPath: "threadTitle").value as! String
@@ -151,6 +151,10 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    func removeListener(){
+        threadRef.removeAllObservers()
+    }
+    
     
      //MARK: - Navigation
 
@@ -161,11 +165,14 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             let topic = self.topics[positionHit]
             //print(topic.getMessages())
             //print("threadTitle " + "dsadasdas " + vc.threadTitle.text! )
+            vc.topicPosition = positionHit
             vc.threadt = threadTit.text!///
             vc.msg = topic.getTopicTitle()
             vc.up = String(topic.getUpvotes())
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
+            //self.dismiss(animated: true, completion: nil)
+            removeListener()
         }
     }
     

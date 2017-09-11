@@ -110,17 +110,21 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                         //4
                         if(topicPath.childSnapshot(forPath: String(i)).exists() && totalTopics >= topicsFound){
                             let specificThreadPath = topicPath.childSnapshot(forPath: String(i))
-                            var topic = Topics()
+                            let topic = Topics()
+                            //5
+                            if(specificThreadPath.childSnapshot(forPath: "topicTitle").exists() && specificThreadPath.childSnapshot(forPath: "timeStamp").exists()){
+                           
                             topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             topic.setTopicTitle(tp: (specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String))
                             topic.setPosition(p: specificThreadPath.childSnapshot(forPath: "position").value as! Int)
                             topic.setUpvotes(up: specificThreadPath.childSnapshot(forPath: "upvotes").value as! Int)
                             topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
-                            topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
+                                 topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
                             self.topics.append(topic)
                             topicsFound = topicsFound + 1
+                            }//5
                         }//4
                         else if(self.firstOpenSpotInTopics == -99){
                                 self.defaults.set(i, forKey:"firstOpenSpotInTopics" )

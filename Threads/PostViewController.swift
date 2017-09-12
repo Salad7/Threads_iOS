@@ -82,6 +82,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         message.text = msg
         timeElapsed.text = time
         upvotes.text = up
+        replies.text = reps
         
         loadPosts()
         userIcon.setImage(string: "D",color: nil,circular: true)

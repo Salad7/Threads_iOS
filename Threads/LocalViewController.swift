@@ -130,6 +130,10 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
                              topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                                if(specificThreadPath.childSnapshot(forPath: "messages").exists()){
+                                    print("message exists")
+                                topic.setMessages(me: specificThreadPath.childSnapshot(forPath: "messages").value as! [Message])
+                                }
                                 topic.setUpvotes(up: topic.getUpvoters().count)
                             self.topics.append(topic)
                             topicsFound = topicsFound + 1
@@ -168,15 +172,17 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "local_cell") as! LocalTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "local_cell") as! LocalTableViewCell
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
-        cell.replies.text = String(self.topics[indexPath.row].getReplies()) + " replies"
+        cell.replies.text = String(self.topics[indexPath.row].getMessages().count) + " replies"
         cell.upvote.text = String(self.topics[indexPath.row].getUpvoters().count)
         cell.elapsedTime.text = String(describing: self.topics[indexPath.row].getTimeStamp())
+        var topicPos = indexPath.row
+        print("messages count "+String(self.topics[topicPos].getMessages().count))
         cell.yourobj = {
             //print("poop")
             //If the user is not in the threads anon
-            var topicPos = indexPath.row
+            
 
             print(String(topicPos) + "upvotes")
             var temp = self.topics[indexPath.row].getUpvoters()

@@ -21,6 +21,9 @@ extension String {
         func getUID() -> String {
             return UIDevice.current.identifierForVendor!.uuidString
         }
+    func convertMillisToTime(ms: String){
+        //let date = Date(timeIntervalSince1970: ms)
+    }
     }
 
 extension Double {

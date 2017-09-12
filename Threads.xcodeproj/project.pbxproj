@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F3AD9B81F6821F300783B53 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3AD9B71F6821F300783B53 /* SettingsViewController.swift */; };
 		0F7D78201F6241A20073E033 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D781F1F6241A20073E033 /* AppDelegate.swift */; };
 		0F7D78221F6241A20073E033 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78211F6241A20073E033 /* ViewController.swift */; };
 		0F7D78251F6241A20073E033 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F7D78231F6241A20073E033 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F3AD9B71F6821F300783B53 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0F7D781C1F6241A20073E033 /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F7D781F1F6241A20073E033 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F7D78211F6241A20073E033 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				0F7D78771F63BA400073E033 /* TabbarViewController.swift */,
 				0F7D787B1F63C46A0073E033 /* ExtensionSnips.swift */,
 				0F7D787D1F65B0370073E033 /* FirebaseCounter.swift */,
+				0F3AD9B71F6821F300783B53 /* SettingsViewController.swift */,
 			);
 			path = Threads;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				0F7D78511F6268710073E033 /* Thread.swift in Sources */,
 				0F7D78701F63516A0073E033 /* CreateThreadViewController.swift in Sources */,
 				0F7D78741F63685D0073E033 /* LonLat.swift in Sources */,
+				0F3AD9B81F6821F300783B53 /* SettingsViewController.swift in Sources */,
 				0F7D785D1F6348F40073E033 /* GlobalTableViewCell.swift in Sources */,
 				0F7D786A1F634E960073E033 /* AreaViewController.swift in Sources */,
 				0F7D78531F62687A0073E033 /* Post.swift in Sources */,

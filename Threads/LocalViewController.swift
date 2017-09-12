@@ -102,8 +102,14 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
            self.topics.removeAll()
             if(!(snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).childSnapshot(forPath: self.threadCode)).exists()){
                 let title = self.threadTit.text!
-                self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["threadName":title])
-                self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["timeStamp":Date().toMillis()])
+                
+                //If the thread code doesnt exist
+                if((self.defaults.object(forKey: self.threadCode)) == nil){
+                    self.defaults.set(true, forKey: self.threadCode)
+                    self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["threadName":title])
+                    self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["timeStamp":Date().toMillis()])
+                }
+                
             }
             
             

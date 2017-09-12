@@ -20,9 +20,11 @@ class CreateThreadViewController: UIViewController {
             t.setAnons(a:u)
             t.setThreadTitle(t: (threadNameField.text)!)
             t.setTopics(tp: [createFirstTopic()])
+            t.setTimeStamp(ts: Date().toMillis())
             let topic = t.getTopics()[0]
             //Create thread
             threadRef.child("Threads").child(threadCode).updateChildValues(["threadTitle" :t.getThreadTitle()])
+            threadRef.child("Threads").child(threadCode).updateChildValues(["timeStamp" :t.getTimeStamp()])
             threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvoters" :topic.getUpvoters()])
 
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":topic.getParent()])

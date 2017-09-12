@@ -14,6 +14,8 @@ class SettingsTableViewCell: UITableViewCell {
     @IBOutlet weak var dateCreated: UILabel!
 
     @IBOutlet weak var threadName: UILabel!
+    var yourobj : (() -> Void)? = nil
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

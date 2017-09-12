@@ -12,10 +12,19 @@ class Thread {
     var threadTitle = ""
     var anons = [String]()
     var topics = [Topics]()
+    var timeStamp = UInt64()
     
     
     init(){
         
+    }
+    
+    func setTimeStamp(ts :UInt64){
+        timeStamp = ts
+    }
+    
+    func getTimeStamp() -> UInt64{
+        return timeStamp
     }
     
     func setThreadTitle(t :String){

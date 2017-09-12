@@ -25,7 +25,6 @@ class LocalTableViewCell: UITableViewCell {
     var yourobj : (() -> Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
-        local_ref = Database.database().reference()
         // Initialization code
     }
 

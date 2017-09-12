@@ -94,8 +94,19 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //1
     func addFirebaseLocalThreads(){
+        //If the user is not in this thread add them
+        
+        
+        
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
            self.topics.removeAll()
+            if(!(snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).childSnapshot(forPath: self.threadCode)).exists()){
+                let title = self.threadTit.text!
+                self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["threadName":title])
+                self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["timeStamp":Date().toMillis()])
+            }
+            
+            
             //1
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
                 self.threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))

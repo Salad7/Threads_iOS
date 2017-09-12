@@ -10,14 +10,36 @@ import Foundation
 
 class Settings {
     var name = ""
-    var timeStamp = Date()
+    var timeStamp = UInt64()
     var threadCode = ""
     
     init(){
         
     }
     
-    func setName(){
-        
+    func setName(n :String){
+        name = n
     }
+    
+    func setTimeStamp(ts: UInt64){
+        timeStamp = ts
+    }
+    
+    func setThreadCode(t :String){
+        threadCode = t
+    }
+    
+    func getName() -> String {
+        return name
+    }
+    
+    func getTimeStamp() -> UInt64 {
+        return timeStamp
+    }
+    
+    func getThreadCode() -> String {
+        return threadCode
+    }
+    
+    
 }

@@ -9,6 +9,10 @@
 import UIKit
 
 class AreaViewController: UIViewController {
+    @IBAction func postBtn(_ sender: UIButton) {
+    }
+    @IBAction func inviteBtn(_ sender: UIButton) {
+    }
     @IBOutlet weak var areaTableView: UITableView!
     @IBOutlet weak var threadTit: UILabel!
 

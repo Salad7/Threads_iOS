@@ -210,7 +210,6 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="navigate-up-arrow"/>
                                                     <connections>
-                                                        <action selector="upvote:" destination="8Zn-6p-MRL" eventType="touchUpInside" id="Yru-tJ-DFS"/>
                                                         <action selector="upvoteBtn:" destination="8Zn-6p-MRL" eventType="touchUpInside" id="TIG-bG-Ebt"/>
                                                     </connections>
                                                 </button>
@@ -231,6 +230,7 @@
                                             <outlet property="message" destination="2mU-UN-f5g" id="MGl-PZ-UtD"/>
                                             <outlet property="replies" destination="pae-JS-QDm" id="MBC-3g-IyN"/>
                                             <outlet property="upvote" destination="rpH-SN-6XF" id="aaq-dF-Nlo"/>
+                                            <outlet property="upvoteBtnF" destination="dJN-v1-pk7" id="4Zq-gi-Q7w"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

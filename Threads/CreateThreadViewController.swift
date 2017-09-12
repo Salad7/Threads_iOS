@@ -23,8 +23,8 @@ class CreateThreadViewController: UIViewController {
             let topic = t.getTopics()[0]
             //Create thread
             threadRef.child("Threads").child(threadCode).updateChildValues(["threadTitle" :t.getThreadTitle()])
-            threadRef.child("Threads").child(threadCode).updateChildValues(["anons" :t.getAnons()])
-            self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["position":0])
+            threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvoters" :topic.getUpvoters()])
+
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":topic.getParent()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["UID":topic.getHostUID()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["position":topic.getPostion()])
@@ -33,7 +33,6 @@ class CreateThreadViewController: UIViewController {
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":topic.getAnonCode()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":topic.getTopicTitle()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":topic.getTimeStamp()])
-            threadRef.child("Threads").child(threadCode).updateChildValues(["UIDs" :t.getAnons()])
             performSegue(withIdentifier: "show_local", sender: nil)
         }
     }
@@ -65,6 +64,7 @@ class CreateThreadViewController: UIViewController {
         topic.setAnonCode(a: [u.getUID():"red"])
         topic.setTimeStamp(t: Date().toMillis())
         topic.setHostUID(uid: u.getUID())
+        topic.setUpvoters(u: [String]())
         return topic
     }
     

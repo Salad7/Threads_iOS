@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Threads/LocalViewController.swift"
-            timestampString = "526844822.022017"
+            timestampString = "526869514.841002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Threads/LocalViewController.swift"
-            timestampString = "526844822.022017"
+            timestampString = "526869514.841002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "addFirebaseLocalThreads()"
             landmarkType = "7">
          </BreakpointContent>

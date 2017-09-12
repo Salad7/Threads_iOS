@@ -21,6 +21,7 @@ class Thread {
     func setThreadTitle(t :String){
         threadTitle = t
     }
+   
     
    
     func setAnons(a :[String]) {

@@ -17,6 +17,15 @@ class Topics {
     var hostUID = ""
     var anonCode = [String:String]()
     var messages = [Message]()
+    var upvoters = [String]()
+    
+    func setUpvoters(u :[String]){
+        upvoters = u
+    }
+    
+    func getUpvoters() -> [String]{
+        return upvoters
+    }
     
     
     init(){

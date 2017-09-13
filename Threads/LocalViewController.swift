@@ -100,17 +100,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
            self.topics.removeAll()
-            if(!(snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).childSnapshot(forPath: self.threadCode)).exists()){
-                let title = self.threadTit.text!
-                
-                //If the thread code doesnt exist
-                if((self.defaults.object(forKey: self.threadCode)) == nil){
-                    self.defaults.set(true, forKey: self.threadCode)
-                    self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["threadName":title])
-                    self.threadRef.child("Anons").child("".getUID()).child(self.threadCode).updateChildValues(["timeStamp":Date().toMillis()])
-                }
-                
-            }
+            //The user has never joined a thread,
+
             
             
             //1
@@ -148,7 +139,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
                              topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
                                 if(specificThreadPath.childSnapshot(forPath: "messages").exists()){
-                                    print("message exists")
+                                    //print("message exists")
                                 topic.setMessages(me: specificThreadPath.childSnapshot(forPath: "messages").value as! [Message])
                                 }
                                 topic.setUpvotes(up: topic.getUpvoters().count)
@@ -177,6 +168,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                    }//2
             
             }//1
+            self.handleLoadingSettings(snapshot: snapshot)
             self.localTableView.reloadData()
         })
 
@@ -215,6 +207,49 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         //print("wired cell as "+cell.elapsedTime.text!)
         return cell
+    }
+    
+    func handleLoadingSettings(snapshot :DataSnapshot){
+        var openSpot = FirebaseCounter().MAX_SETTINGS + 1
+
+        if(!(snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).childSnapshot(forPath: "0").exists())){
+            //create a settings object and add that settings to the userPosition
+            let title = self.threadTit.text!
+            var settings1 = Settings()
+            settings1.setName(n: title)
+            settings1.setTimeStamp(ts: Date().toMillis())
+            settings1.setThreadCode(t: self.threadCode)
+            self.threadRef.child("Anons").child("".getUID()).child("0").updateChildValues(["threadName":settings1.getName()])
+            self.threadRef.child("Anons").child("".getUID()).child("0").updateChildValues(["timeStamp":settings1.getTimeStamp()])
+            self.threadRef.child("Anons").child("".getUID()).child("0").updateChildValues(["threadCode":settings1.getThreadCode()])
+            print("hm")
+        }
+        else{
+            var isSettingsFound = false
+            var settingsFound = 0
+            var settingsTotal = snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).childrenCount
+            var settingsPath = snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID())
+            for i in 1 ... FirebaseCounter().MAX_SETTINGS {
+                if(settingsPath.childSnapshot(forPath: String(i)).exists()){
+                    var threadCodeInner = settingsPath.childSnapshot(forPath: String(i)).childSnapshot(forPath: "threadCode") as! String
+                    if(threadCodeInner == self.threadCode){
+                        isSettingsFound = true
+                    }
+                    else if(i < openSpot && Int(settingsTotal) < settingsFound){
+                        openSpot = i
+                        print("i is less than openSpot")
+                    }
+                    settingsFound = settingsFound + 1
+                }
+            }
+            if(!isSettingsFound && Int(settingsTotal) < settingsFound){
+                self.threadRef.child("Anons").child("".getUID()).child(String(openSpot)).updateChildValues(["threadName":self.threadTit.text])
+                self.threadRef.child("Anons").child("".getUID()).child(String(openSpot)).updateChildValues(["threadCode":self.threadCode])
+                self.threadRef.child("Anons").child("".getUID()).child(String(openSpot)).updateChildValues(["timeStamp":Date().toMillis()])
+                
+            }
+        }
+
     }
     
     

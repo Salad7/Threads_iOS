@@ -10,4 +10,5 @@ import Foundation
 class FirebaseCounter {
     let MAX_TOPICS = 10000
     let MAX_MESSAGES_PER_TOPIC = 10000
+    let MAX_SETTINGS = 30
 }

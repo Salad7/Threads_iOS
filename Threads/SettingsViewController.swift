@@ -8,13 +8,14 @@
 
 import UIKit
 import Firebase
-class SettingsViewController: UITabBarController, UITableViewDataSource, UITableViewDelegate  {
+class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+    @IBOutlet weak var settingTableView: UITableView!
    
     var threadRef :DatabaseReference!
     let defaults = UserDefaults.standard
     var threadCode = ""
-    var settingTableView = UITableView()
-    var settings = [Thread]()
+    //var settingTableView = UITableView()
+    var settings = [Settings]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,20 +23,32 @@ class SettingsViewController: UITabBarController, UITableViewDataSource, UITable
         settingTableView.dataSource = self
         self.threadCode = self.defaults.string(forKey: "threadCode")!
         threadRef = Database.database().reference()
-
+        loadSettingsFromFirebase()
         // Do any additional setup after loading the view.
     }
     
     func loadSettingsFromFirebase(){
          _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
+            self.settings.removeAll()
+
+            for i in 0 ... FirebaseCounter().MAX_SETTINGS {
             if(snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID()).exists()){
+                print("poop at index " + String(i))
                     var settingsPath = snapshot.childSnapshot(forPath: "Anons").childSnapshot(forPath: "".getUID())
-                    var setting = settingsPath.value as! [Thread]()
+                if(settingsPath.childSnapshot(forPath: String(i)).exists()){
+                    let individualSettingsPath = settingsPath.childSnapshot(forPath: String(i))
+                    print("poop2")
+                    var setting = Settings()
+                    setting.setThreadCode(t: individualSettingsPath.childSnapshot(forPath: "threadCode").value as! String)
+                    setting.setTimeStamp(ts: individualSettingsPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                    setting.setName(n: individualSettingsPath.childSnapshot(forPath: "threadName").value as! String)
+                    self.settings.append(setting)
+                    print("poopy " + setting.getName())
                 
-//                    setting.setThreadTitle(t: settingsPath.childSnapshot(forPath: "Threads").childSnapshot(forPath: "threadName").value as! String)
-//                    setting.setTimeStamp(ts: settingsPath.childSnapshot(forPath: "Threads").childSnapshot(forPath: "timeStamp").value as! UInt64)
-                self.settings = setting
+                }
             }
+            }
+            self.settingTableView.reloadData()
             
         })
     }
@@ -53,7 +66,7 @@ class SettingsViewController: UITabBarController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "settings_cell") as! SettingsTableViewCell
-        cell.threadName.text = settings[indexPath.row].getThreadTitle()
+        cell.threadName.text = settings[indexPath.row].getName()
         cell.dateCreated.text = String(settings[indexPath.row].getTimeStamp())
         
         return cell

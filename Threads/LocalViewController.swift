@@ -11,9 +11,7 @@ import Firebase
 import PopupDialog
 
 class LocalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
-   var topicPosition = 0
-   var currentLowest = -1
-    var threadPath :DataSnapshot!
+    
     
     @IBAction func postBtn(_ sender: UIButton) {
         
@@ -66,7 +64,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     var threadRef: DatabaseReference!
     var firstOpenSpotInTopics = -99
-    
+    var topicPosition = 0
+    var currentLowest = -1
+    var threadPath :DataSnapshot!
     var topics = [Topics]()
     let defaults = UserDefaults.standard
     var threadCode = ""
@@ -95,7 +95,6 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     //1
     func addFirebaseLocalThreads(){
         //If the user is not in this thread add them
-        
         
         
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in

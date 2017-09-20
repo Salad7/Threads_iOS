@@ -15,11 +15,12 @@ class AreaTableViewCell: UITableViewCell {
     @IBAction func upvoteBtn(_ sender: UIButton) {
     }
     @IBOutlet weak var message: UILabel!
-
+    var yourobj : (() -> Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+  
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

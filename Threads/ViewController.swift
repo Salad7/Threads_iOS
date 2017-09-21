@@ -74,7 +74,7 @@ let locationManager = CLLocationManager()
            // SwiftSpinner.hide()
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: self.pureKey).exists()){
                 //print("pooop")
-                SwiftSpinner.hide()
+                //SwiftSpinner.hide()
                 self.performSegue(withIdentifier: "show_tabbar", sender: nil)
             }
             else{

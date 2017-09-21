@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class CreateThreadViewController: UIViewController {
+class CreateThreadViewController: UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var view_ui: UIView!
     
     @IBAction func submitBtn(_ sender: UIButton) {
@@ -38,6 +38,14 @@ class CreateThreadViewController: UIViewController {
             performSegue(withIdentifier: "show_local", sender: nil)
         }
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.threadNameField.resignFirstResponder()
+        return true
+    }
+    
+    
+    
     @IBOutlet weak var threadNameField: UITextField!
     let defaults = UserDefaults.standard
     var threadCode = ""
@@ -48,6 +56,11 @@ class CreateThreadViewController: UIViewController {
         threadRef = Database.database().reference()
         threadCode = defaults.string(forKey: "threadCode")!
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        threadNameField.delegate = self
+        threadNameField.returnKeyType = .done
     }
 
     override func didReceiveMemoryWarning() {

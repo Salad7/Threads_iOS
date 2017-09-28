@@ -41,25 +41,6 @@ let locationManager = CLLocationManager()
     }
     
     
-    func addListenerForThreads(){
-        //If the current users range is with in the legitimate bounds
-        let lat = (locationManager.location?.coordinate.latitude)!.truncate(places: 6)
-        let lon = (locationManager.location?.coordinate.longitude)!.truncate(places: 6)
-        //let possibleThreads = getThreadsNearMe(lo: lon!,la: lat!)
-        var thread = Thread.init()
-        //thread.setThreadTitle(t: "UNCC Library")
-        var pos1 = String(lon).components(separatedBy: ".")
-        var pos2 = String(lat).components(separatedBy: ".")
-        
-        var pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
-        print(pureKey)
-        
-        
-    
-        
-    
-    }
-    
     func searchIfThreadExistsInFirebase(){
         //SwiftSpinner.show("Finding thread...")
         let lat = Double((locationManager.location?.coordinate.latitude)!)
@@ -70,11 +51,9 @@ let locationManager = CLLocationManager()
          pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
         
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
-            //If we find that the user is in an existant thread
-           // SwiftSpinner.hide()
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: self.pureKey).exists()){
-                //print("pooop")
-                //SwiftSpinner.hide()
+                SwiftSpinner.hide()
+                
                 self.performSegue(withIdentifier: "show_tabbar", sender: nil)
             }
             else{

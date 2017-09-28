@@ -14,7 +14,7 @@ class Post {
     var upvotes = 0
     var messages = [Message]()
     var replies = 0
-    var timeStamp = UInt64()
+    var timeStamp = Int()
     var postTitle = ""
     var parent = ""
     var hostUID = ""
@@ -37,7 +37,7 @@ class Post {
     func setReplies(r :Int){
         replies = r
     }
-    func setTimeStamp(t :UInt64){
+    func setTimeStamp(t :Int){
         timeStamp = t
     }
     func setPostTitle(p :String){
@@ -69,7 +69,7 @@ class Post {
         return replies
     }
     
-    func getTimeStamp() -> UInt64 {
+    func getTimeStamp() -> Int {
         return timeStamp
     }
     

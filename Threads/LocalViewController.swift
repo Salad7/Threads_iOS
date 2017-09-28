@@ -92,6 +92,10 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func addFirebaseLocalThreadsPython(){
+        
+    }
     //1
     func addFirebaseLocalThreads(){
         //If the user is not in this thread add them
@@ -99,13 +103,13 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
            self.topics.removeAll()
-            //The user has never joined a thread,
-
-            
-            
+            //The user has never joined a thread
             //1
+            //If the thread the user is assigned too exists
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
+                //Store the thread path to shorten code requirements
                 self.threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
+                //Set the title to the title of the threadTitle
                 self.threadTit.text = self.threadPath.childSnapshot(forPath: "threadTitle").value as? String
                
 
@@ -136,7 +140,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                             topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
-                             topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                             topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! Int)
                                 if(specificThreadPath.childSnapshot(forPath: "messages").exists()){
                                     //print("message exists")
                                 topic.setMessages(me: specificThreadPath.childSnapshot(forPath: "messages").value as! [Message])
@@ -184,7 +188,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
         cell.replies.text = String(self.topics[indexPath.row].getMessages().count) + " replies"
         cell.upvote.text = String(self.topics[indexPath.row].getUpvoters().count)
-        cell.elapsedTime.text = String(describing: self.topics[indexPath.row].getTimeStamp())
+        cell.elapsedTime.text = "".getElapsedTime(userTS: Int(self.topics[indexPath.row].getTimeStamp()))
         var topicPos = indexPath.row
         print("messages count "+String(self.topics[topicPos].getMessages().count))
         cell.yourobj = {

@@ -12,7 +12,7 @@ class Topics {
     var upvotes = 0
     var topicTitle = ""
     var replies = 0
-    var timeStamp = UInt64()
+    var timeStamp = Int()
     var parent = ""
     var hostUID = ""
     var anonCode = [String:String]()
@@ -50,7 +50,7 @@ class Topics {
     func setReplies(r :Int){
         replies = r
     }
-    func setTimeStamp(t :UInt64){
+    func setTimeStamp(t :Int){
         timeStamp = t
     }
     func setParent(pa :String){
@@ -79,7 +79,7 @@ class Topics {
         return replies
     }
     
-    func getTimeStamp() -> UInt64 {
+    func getTimeStamp() -> Int {
         return timeStamp
     }
     

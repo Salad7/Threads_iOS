@@ -129,7 +129,7 @@ class AreaViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                 topic.setReplies(r: specificareaPath.childSnapshot(forPath: "replies").value as! Int)
                                 topic.setParent(pa: specificareaPath.childSnapshot(forPath: "parent").value as! String)
                                 topic.setHostUID(uid: specificareaPath.childSnapshot(forPath: "UID").value as! String)
-                                topic.setTimeStamp(t: specificareaPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                                topic.setTimeStamp(t: specificareaPath.childSnapshot(forPath: "timeStamp").value as! Int)
                                 if(specificareaPath.childSnapshot(forPath: "messages").exists()){
                                     //print("message exists")
                                     topic.setMessages(me: specificareaPath.childSnapshot(forPath: "messages").value as! [Message])

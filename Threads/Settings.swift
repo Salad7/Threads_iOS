@@ -10,7 +10,7 @@ import Foundation
 
 class Settings {
     var name = ""
-    var timeStamp = UInt64()
+    var timeStamp = Int()
     var threadCode = ""
     
     init(){
@@ -21,7 +21,7 @@ class Settings {
         name = n
     }
     
-    func setTimeStamp(ts: UInt64){
+    func setTimeStamp(ts: Int){
         timeStamp = ts
     }
     
@@ -33,7 +33,7 @@ class Settings {
         return name
     }
     
-    func getTimeStamp() -> UInt64 {
+    func getTimeStamp() -> Int {
         return timeStamp
     }
     

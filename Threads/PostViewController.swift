@@ -80,7 +80,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         postRef = Database.database().reference()
         threadTitle.text = threadt
         message.text = msg
-        timeElapsed.text = time
+        timeElapsed.text = "".getElapsedTime(userTS: Int(time)!)
         upvotes.text = up
         replies.text = reps
         
@@ -112,6 +112,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         let messagesPath = topicPath.childSnapshot(forPath: String(self.topicPosition)).childSnapshot(forPath: "messages")
                         let totalMessages = Int(messagesPath.childrenCount)
                         //print("total messages" + String(totalMessages))
+
                         var messagesFound = 0
                         //4
                         for i in 0 ... FirebaseCounter().MAX_MESSAGES_PER_TOPIC {
@@ -126,7 +127,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             message.setPosition(p: specificMessagePath.childSnapshot(forPath: "position").value as! Int)
                             message.setUpvotes(u: specificMessagePath.childSnapshot(forPath: "upvotes").value as! Int)
                             message.setReplies(r: specificMessagePath.childSnapshot(forPath: "replies").value as! Int)
-                            message.setTimeStamp(t: specificMessagePath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                            message.setTimeStamp(t: specificMessagePath.childSnapshot(forPath: "timeStamp").value as! Int)
                             message.setAnonCode(a: specificMessagePath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             self.messages.append(message)
                             messagesFound = messagesFound + 1
@@ -171,6 +172,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.message.text = self.messages[indexPath.row].getMsg()
         cell.upvotes.text = String(String(self.messages[indexPath.row].getUpvotes()))
         cell.anonIcon?.setImage(string: "M",color: nil, circular: true)
+        
         return cell
     }
     

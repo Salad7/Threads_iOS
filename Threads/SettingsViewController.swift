@@ -40,7 +40,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
                     print("poop2")
                     var setting = Settings()
                     setting.setThreadCode(t: individualSettingsPath.childSnapshot(forPath: "threadCode").value as! String)
-                    setting.setTimeStamp(ts: individualSettingsPath.childSnapshot(forPath: "timeStamp").value as! UInt64)
+                    setting.setTimeStamp(ts: individualSettingsPath.childSnapshot(forPath: "timeStamp").value as! Int)
                     setting.setName(n: individualSettingsPath.childSnapshot(forPath: "threadName").value as! String)
                     self.settings.append(setting)
                     print("poopy " + setting.getName())

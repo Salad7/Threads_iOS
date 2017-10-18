@@ -19,6 +19,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingTableView.tableFooterView = UIView()
+
         settingTableView.delegate = self
         settingTableView.dataSource = self
         self.threadCode = self.defaults.string(forKey: "threadCode")!
@@ -67,7 +69,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "settings_cell") as! SettingsTableViewCell
         cell.threadName.text = settings[indexPath.row].getName()
-        cell.dateCreated.text = String(settings[indexPath.row].getTimeStamp())
+        cell.dateCreated.text = String("".getElapsedTime(userTS:settings[indexPath.row].getTimeStamp()))
         
         return cell
     }

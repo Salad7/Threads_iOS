@@ -75,6 +75,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        localTableView.tableFooterView = UIView()
+
         localTableView.delegate = self
         localTableView.dataSource = self
         self.threadCode = self.defaults.string(forKey: "threadCode")!

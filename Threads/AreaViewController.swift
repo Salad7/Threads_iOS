@@ -71,6 +71,8 @@ class AreaViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        areaTableView.tableFooterView = UIView()
+
         areaTableView.delegate = self
         areaTableView.dataSource = self
         self.threadCode = self.defaults.string(forKey: "threadCode")!

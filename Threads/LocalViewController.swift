@@ -188,6 +188,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
         cell.replies.text = String(self.topics[indexPath.row].getMessages().count) + " replies"
         cell.upvote.text = String(self.topics[indexPath.row].getUpvoters().count)
+        print("time stampe is " + String(self.topics[indexPath.row].getTimeStamp()))
         cell.elapsedTime.text = "".getElapsedTime(userTS: Int(self.topics[indexPath.row].getTimeStamp()))
         var topicPos = indexPath.row
         print("messages count "+String(self.topics[topicPos].getMessages().count))

@@ -20,6 +20,7 @@ let locationManager = CLLocationManager()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        printNearLocs()
         // Do any additional setup after loading the view, typically from a nib.
         threadRef = Database.database().reference()
 
@@ -87,11 +88,22 @@ let locationManager = CLLocationManager()
         return [LonLat]()
     }
     
+    func printNearLocs(){
+        var ss = ThreadFinder().runSimulation(laa: 35.281412-0.000100, loo: -80.770331-0.000100)
+        for i in 0 ... ss.count-1 {
+            print("Latitude " + String(describing: ss[i].lat) + " Longitude " + String(describing: ss[i].lon))
+        }
+    }
+    
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
+        var ss = ThreadFinder().runSimulation(laa: locValue.latitude-0.000100, loo: locValue.longitude-0.000100)
+        for i in 0 ... ss.count {
+            print("Latitude " + String(describing: ss[i].lat) + " Longitude " + String(describing: ss[i].lon))
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

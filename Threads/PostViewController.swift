@@ -41,6 +41,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             message.setUpvotes(u: 0)
             message.setTimeStamp(t: Date().toMillis())
             message.setAnonCode(a: ["".getUID():"blue"])
+            message.setPosition(p: self.messagePosition)
             //currentMessages.append(message)
             newMessagePath.updateChildValues(["UID":message.getHostUID()])
             newMessagePath.updateChildValues(["timeStamp":message.getTimeStamp()])
@@ -72,6 +73,8 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var up = ""
     var topicPosition = 999
     var messagePosition = 999
+    var messageSelectedInArray = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         postTableView.tableFooterView = UIView()
@@ -85,7 +88,6 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         timeElapsed.text = "".getElapsedTime(userTS: Int(time)!)
         upvotes.text = up
         replies.text = reps + " replies"
-        
         loadPosts()
         userIcon.setImage(string: "D",color: nil,circular: true)
         
@@ -123,10 +125,15 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                             if(messagesPath.childSnapshot(forPath: String(i)).exists() && totalMessages >= messagesFound ){
                                 
                             let specificMessagePath = messagesPath.childSnapshot(forPath: String(i))
+                                
                                 if(specificMessagePath.childSnapshot(forPath: "anonCode").value as? [String:String] != nil){
+                                    
                             let message = Message()
+                                    if(specificMessagePath.childSnapshot(forPath: "upvoters").exists()){
+                                        message.setUpvoters(u: specificMessagePath.childSnapshot(forPath: "upvoters").value as! [String])
+                                    }
                             message.setMsg(m: specificMessagePath.childSnapshot(forPath: "message").value as! String)
-                            message.setPosition(p: specificMessagePath.childSnapshot(forPath: "position").value as! Int)
+                            message.setPosition(p: i)
                             message.setUpvotes(u: specificMessagePath.childSnapshot(forPath: "upvotes").value as! Int)
                             message.setReplies(r: specificMessagePath.childSnapshot(forPath: "replies").value as! Int)
                             message.setTimeStamp(t: specificMessagePath.childSnapshot(forPath: "timeStamp").value as! Int)
@@ -173,10 +180,15 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var cell = tableView.dequeueReusableCell(withIdentifier: "post_cell") as! PostTableViewCell
         cell.message.text = self.messages[indexPath.row].getMsg()
-        cell.upvotes.text = String(String(self.messages[indexPath.row].getUpvotes()))
+        cell.upvotes.text = String(String(self.messages[indexPath.row].getUpvoters().count))
+        var temp = self.messages[indexPath.row].getUpvoters()
         cell.upvoteButton = {
             //Check if user already upvoted
-            
+            if(temp.count == 0 || !temp.contains("".getUID())){
+                temp.append("".getUID())
+                self.postRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).child("messages").child(String(self.messages[indexPath.row].getPosition())).updateChildValues(["upvoters":temp])
+                print("adding child")
+            }
             
         }
         cell.anonIcon?.setImage(string: "M",color: nil, circular: true)
@@ -188,6 +200,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //performSegue(withIdentifier: "show_post", sender: indexPath)
         //tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
     }
     
     

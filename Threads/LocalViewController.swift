@@ -75,6 +75,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     var threadCode = ""
     var positionHit = 10
     var upvoters = [String]()
+    var topicSelectedInList = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +143,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                            
                             topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             topic.setTopicTitle(tp: (specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String))
-                            topic.setPosition(p: specificThreadPath.childSnapshot(forPath: "position").value as! Int)
+                            topic.setPosition(p: i)
                             topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
@@ -274,8 +275,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        positionHit = indexPath.row
-     
+        positionHit = self.topics[indexPath.row].getPostion()
+        topicSelectedInList = indexPath.row
+        
         DispatchQueue.main.async(execute: {
             self.performSegue(withIdentifier: "show_post", sender: indexPath)
             print("hit")
@@ -293,9 +295,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "show_post"){
             let vc = segue.destination as! PostViewController
-            let topic = self.topics[positionHit]
-            //print(topic.getMessages())
-            //print("threadTitle " + "dsadasdas " + vc.threadTitle.text! )
+            let topic = self.topics[topicSelectedInList]
             vc.topicPosition = positionHit
             vc.threadt = threadTit.text!///
             vc.msg = topic.getTopicTitle()

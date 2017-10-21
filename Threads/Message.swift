@@ -15,6 +15,7 @@ class Message{
     var timeStamp = Int()
     var position = 0
     var anonCode = [String:String]()
+    var upvoters = [String]()
     //var anonChart = [String:String]()
     var hostUID = ""
     
@@ -22,6 +23,13 @@ class Message{
         upvotes = u
     }
     
+    func setUpvoters(u :[String])
+    {
+        upvoters = u
+    }
+    func getUpvoters() -> [String]{
+        return upvoters
+    }
     func setAnonCode(a :[String:String]){
         anonCode = a
     }

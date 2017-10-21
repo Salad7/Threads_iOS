@@ -383,8 +383,10 @@
                                                 <constraint firstItem="sMD-ak-GwE" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" multiplier="0.7" id="4JL-cP-f34"/>
                                                 <constraint firstItem="Ux5-Sy-REO" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" multiplier="1.52" id="4x4-4N-ccd"/>
                                                 <constraint firstItem="ZZL-b9-k0u" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="1.8" id="9dB-uR-7cl"/>
+                                                <constraint firstItem="Ux5-Sy-REO" firstAttribute="leading" secondItem="uxD-EI-oah" secondAttribute="leading" constant="16.5" id="KCh-gn-hnd"/>
                                                 <constraint firstItem="Ux5-Sy-REO" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="0.55" id="MYt-Zm-1WU"/>
                                                 <constraint firstItem="ZZL-b9-k0u" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" multiplier="1.5" id="Pkw-Fg-KWn"/>
+                                                <constraint firstItem="sMD-ak-GwE" firstAttribute="leading" secondItem="uxD-EI-oah" secondAttribute="leading" constant="16.5" id="nIo-2P-Zes"/>
                                                 <constraint firstItem="sMD-ak-GwE" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="0.87" id="rdx-UI-Zfd"/>
                                             </constraints>
                                             <variation key="default">
@@ -454,7 +456,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aO-AR-gAk">
-                                                    <rect key="frame" x="331" y="33" width="24" height="24"/>
+                                                    <rect key="frame" x="331" y="28" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="SaF-3N-NwA"/>
                                                         <constraint firstAttribute="height" constant="24" id="qT3-7u-jYI"/>
@@ -481,7 +483,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fiH-o2-XML" firstAttribute="centerX" secondItem="9N3-MW-sZH" secondAttribute="centerX" multiplier="1.83" id="7ei-Vo-nzl"/>
-                                                <constraint firstItem="4aO-AR-gAk" firstAttribute="centerY" secondItem="9N3-MW-sZH" secondAttribute="centerY" multiplier="0.9" id="opb-LP-QYA"/>
+                                                <constraint firstItem="4aO-AR-gAk" firstAttribute="centerY" secondItem="9N3-MW-sZH" secondAttribute="centerY" multiplier="0.8" id="opb-LP-QYA"/>
                                                 <constraint firstItem="fiH-o2-XML" firstAttribute="centerY" secondItem="9N3-MW-sZH" secondAttribute="centerY" multiplier="1.2" id="qY5-lw-u5v"/>
                                                 <constraint firstItem="4aO-AR-gAk" firstAttribute="centerX" secondItem="9N3-MW-sZH" secondAttribute="centerX" multiplier="1.828" id="wh7-1B-RIW"/>
                                             </constraints>
@@ -875,8 +877,8 @@
         <image name="settings(1)" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6W4-pu-jF1"/>
         <segue reference="A18-pG-8iV"/>
         <segue reference="heU-BI-6dw"/>
+        <segue reference="sg3-K1-GG0"/>
     </inferredMetricsTieBreakers>
 </document>

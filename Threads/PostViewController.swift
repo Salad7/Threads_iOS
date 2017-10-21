@@ -74,6 +74,8 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var messagePosition = 999
     override func viewDidLoad() {
         super.viewDidLoad()
+        postTableView.tableFooterView = UIView()
+
         threadCode = defaults.string(forKey: "threadCode")!
         postTableView.dataSource = self
         postTableView.delegate = self

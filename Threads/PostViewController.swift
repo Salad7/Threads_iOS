@@ -94,7 +94,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func loadPosts(){
         _ = postRef.observe(DataEventType.value, with: { (snapshot) in
-            
+              DispatchQueue.main.async {
             var currentLowest = -1
             //1
             self.messages.removeAll()
@@ -153,6 +153,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 }//2
             }//1
             self.postTableView.reloadData()
+                 }
         })
 
     }

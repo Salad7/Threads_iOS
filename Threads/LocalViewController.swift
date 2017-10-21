@@ -211,10 +211,11 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
 
             //print(String(topicPos) + "upvotes")
             var temp = self.topics[indexPath.row].getUpvoters()
-            if(!temp.contains("".getUID())){
-                
+            print(self.topics[indexPath.row].getUpvoters())
+            print(" You hit topic # " + String(topicPos))
+            if(temp.count == 0 || !temp.contains("".getUID())){
                 temp.append("".getUID())
-                self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(topicPos)).updateChildValues(["upvoters":temp])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topics[indexPath.row].getPostion())).updateChildValues(["upvoters":temp])
                 print("adding child")
             }
             else{

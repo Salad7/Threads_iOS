@@ -15,12 +15,12 @@ class ViewController: UIViewController {
 let locationManager = CLLocationManager()
     var threadRef: DatabaseReference!
     var pureKey = ""
+    var coor_near_me = [LatLng]()
     @IBAction func joinThread(_ sender: UIButton) {
 //        searchIfThreadExistsInFirebase()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        printNearLocs()
         // Do any additional setup after loading the view, typically from a nib.
         threadRef = Database.database().reference()
 
@@ -36,31 +36,46 @@ let locationManager = CLLocationManager()
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        printNearLocs()
         searchIfThreadExistsInFirebase()
 
         
     }
     
+   
+    
     
     func searchIfThreadExistsInFirebase(){
         //SwiftSpinner.show("Finding thread...")
-        let lat = Double((locationManager.location?.coordinate.latitude)!)
-        let lon = Double((locationManager.location?.coordinate.longitude)!)
-        var pos1 = String(lon).components(separatedBy: ".")
-        var pos2 = String(lat).components(separatedBy: ".")
         
-         pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
         
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
-            if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: self.pureKey).exists()){
-                SwiftSpinner.hide()
-                
-                self.performSegue(withIdentifier: "show_tabbar", sender: nil)
+            
+            for i in 0 ... self.coor_near_me.count-1 {
+                let lat = self.coor_near_me[i].lat
+                let lon = self.coor_near_me[i].lon
+                var pos1 = String(lon).components(separatedBy: ".")
+                var pos2 = String(lat).components(separatedBy: ".")
+                //self.pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
+                var testKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
+                print(String(testKey)!)
+                if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(testKey)!).exists()){
+                    SwiftSpinner.hide()
+                    print("showing tabbar")
+                    self.performSegue(withIdentifier: "show_tabbar", sender: nil)
+                    break
+                }
+                print("at index " + String(i))
             }
-            else{
+            let lat = Double((self.locationManager.location?.coordinate.latitude)!)
+            let lon = Double((self.locationManager.location?.coordinate.longitude)!)
+            var pos1 = String(lon).components(separatedBy: ".")
+            var pos2 = String(lat).components(separatedBy: ".")
+            self.pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
                 SwiftSpinner.hide()
+                print("going to create")
                 self.performSegue(withIdentifier: "show_create", sender: nil)
-            }
+            
             
         })
     }
@@ -89,22 +104,30 @@ let locationManager = CLLocationManager()
     }
     
     func printNearLocs(){
-        var ss = ThreadFinder().runSimulation(laa: 35.281412-0.000100, loo: -80.770331-0.000100)
-        for i in 0 ... ss.count-1 {
-            print("Latitude " + String(describing: ss[i].lat) + " Longitude " + String(describing: ss[i].lon))
+        var la =  String(Double((self.locationManager.location?.coordinate.latitude)!))
+        var lo =  String(Double((self.locationManager.location?.coordinate.longitude)!))
+        print("My location Lat : " + la + " Lon : " +  lo)
+    coor_near_me = ThreadFinder().runSimulation(laa: Double(la)!-0.000100, loo: Double(lo)!-0.000100)
+        for i in 0 ... coor_near_me.count-1 {
+            print("Latitude " + String(describing: coor_near_me[i].lat) + " Longitude " + String(describing: coor_near_me[i].lon))
         }
+        print("Number of coordinates = " + String(coor_near_me.count))
+
     }
     
+
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        var ss = ThreadFinder().runSimulation(laa: locValue.latitude-0.000100, loo: locValue.longitude-0.000100)
-        for i in 0 ... ss.count {
-            print("Latitude " + String(describing: ss[i].lat) + " Longitude " + String(describing: ss[i].lon))
-        }
-    }
+    
+   // func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+//        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        var ss = ThreadFinder().runSimulation(laa: locValue.latitude-0.000100, loo: locValue.longitude-0.000100)
+//        for i in 0 ... ss.count {
+//            print("Latitude " + String(describing: ss[i].lat) + " Longitude " + String(describing: ss[i].lon))
+//        }
+//        print("Number of coordinates = " + String(coor_near_me.count))
+  //  }
     
     override func viewWillAppear(_ animated: Bool) {
 

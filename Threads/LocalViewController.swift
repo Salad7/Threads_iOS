@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import SwiftSpinner
+
 import PopupDialog
 
 class LocalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
@@ -22,6 +24,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Submit button
         let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
+            SwiftSpinner.show("Creating Thread")
 
                 print("thread code is " + self.threadCode)
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["threadTitle" :self.threadTit.text!])
@@ -35,8 +38,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["topicTitle": alert.textFields![0].text])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["UIDs" :"".getUID()])
-            self.threadRef.removeAllObservers()
-            self.addFirebaseLocalThreads()
+            //self.threadRef.removeAllObservers()
+            //self.addFirebaseLocalThreads()
            
         })
         
@@ -108,6 +111,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             //The user has never joined a thread
             //1
             //If the thread the user is assigned too exists
+            var locUpvoters = [String]()
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
                 //Store the thread path to shorten code requirements
                 self.threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
@@ -123,8 +127,11 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                     for i in 0 ... FirebaseCounter().MAX_TOPICS {
                         let totalTopics = Int(topicPath.childrenCount)
                         var topicsFound = 0
+                        
                         if((self.threadPath.childSnapshot(forPath: "topics").childSnapshot(forPath: String(i)).childSnapshot(forPath: "upvoters")).exists()){
-                            self.upvoters = (self.threadPath.childSnapshot(forPath: "topics").childSnapshot(forPath: String(i)).childSnapshot(forPath: "upvoters").value as? [String])!
+                          
+                            locUpvoters =  (self.threadPath.childSnapshot(forPath: "topics").childSnapshot(forPath: String(i)).childSnapshot(forPath: "upvoters").value as? [String])!
+                              print("upvoters exists! value is " + String(locUpvoters.count))
                         }
                         //4
                         if(topicPath.childSnapshot(forPath: String(i)).exists() && totalTopics >= topicsFound){
@@ -136,18 +143,19 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                             topic.setAnonCode(a: specificThreadPath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             topic.setTopicTitle(tp: (specificThreadPath.childSnapshot(forPath: "topicTitle").value as! String))
                             topic.setPosition(p: specificThreadPath.childSnapshot(forPath: "position").value as! Int)
-                                if(specificThreadPath.childSnapshot(forPath: "upvoters").exists()){
-                                topic.setUpvoters(u: specificThreadPath.childSnapshot(forPath: "upvoters").value as! [String])
-                                }
                             topic.setReplies(r: specificThreadPath.childSnapshot(forPath: "replies").value as! Int)
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
                              topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! Int)
+                               
                                 if(specificThreadPath.childSnapshot(forPath: "messages").exists()){
                                     //print("message exists")
                                 topic.setMessages(me: specificThreadPath.childSnapshot(forPath: "messages").value as! [Message])
                                 }
-                                topic.setUpvotes(up: topic.getUpvoters().count)
+                                print("upvoters is " + String(locUpvoters.count))
+                                topic.setUpvoters(u: locUpvoters)
+                                locUpvoters.removeAll()
+                               // topic.setUpvotes(up: topic.getUpvoters().count)
                             self.topics.append(topic)
                             topicsFound = topicsFound + 1
                             }//5
@@ -175,6 +183,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             }//1
             self.handleLoadingSettings(snapshot: snapshot)
             self.localTableView.reloadData()
+            SwiftSpinner.hide()
+
         })
 
     }
@@ -190,7 +200,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.message.text = self.topics[indexPath.row].getTopicTitle()
         cell.replies.text = String(self.topics[indexPath.row].getMessages().count) + " replies"
         cell.upvote.text = String(self.topics[indexPath.row].getUpvoters().count)
-        print("time stampe is " + String(self.topics[indexPath.row].getTimeStamp()))
+        print("Upvotes  " + String(self.topics[indexPath.row].getUpvoters().count))
         cell.elapsedTime.text = "".getElapsedTime(userTS: Int(self.topics[indexPath.row].getTimeStamp()))
         var topicPos = indexPath.row
         print("messages count "+String(self.topics[topicPos].getMessages().count))
@@ -199,7 +209,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             //If the user is not in the threads anon
             
 
-            print(String(topicPos) + "upvotes")
+            //print(String(topicPos) + "upvotes")
             var temp = self.topics[indexPath.row].getUpvoters()
             if(!temp.contains("".getUID())){
                 
@@ -288,7 +298,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             vc.topicPosition = positionHit
             vc.threadt = threadTit.text!///
             vc.msg = topic.getTopicTitle()
-            vc.up = String(topic.getUpvotes())
+            vc.up = String(topic.getUpvoters().count)
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
             //self.dismiss(animated: true, completion: nil)

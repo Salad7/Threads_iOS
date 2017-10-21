@@ -171,6 +171,11 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var cell = tableView.dequeueReusableCell(withIdentifier: "post_cell") as! PostTableViewCell
         cell.message.text = self.messages[indexPath.row].getMsg()
         cell.upvotes.text = String(String(self.messages[indexPath.row].getUpvotes()))
+        cell.upvoteButton = {
+            //Check if user already upvoted
+            
+            
+        }
         cell.anonIcon?.setImage(string: "M",color: nil, circular: true)
         
         return cell

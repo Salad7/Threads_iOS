@@ -14,7 +14,13 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var message: UILabel!
     
     @IBAction func upvoteBtn(_ sender: UIButton) {
+        if let upvoteBtn = self.upvoteButton
+        {
+            upvoteBtn()
+        }
     }
+    var upvoteButton : (() -> Void)? = nil
+
   
     override func awakeFromNib() {
         super.awakeFromNib()

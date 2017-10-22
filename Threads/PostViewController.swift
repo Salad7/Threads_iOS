@@ -78,7 +78,6 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         postTableView.tableFooterView = UIView()
-
         threadCode = defaults.string(forKey: "threadCode")!
         postTableView.dataSource = self
         postTableView.delegate = self
@@ -90,8 +89,6 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         replies.text = reps + " replies"
         loadPosts()
         userIcon.setImage(string: "D",color: nil,circular: true)
-        
-        // Do any additional setup after loading the view.
     }
     
     

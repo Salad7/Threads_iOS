@@ -5,9 +5,9 @@
 target 'Threads' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-	pod "SwiftSpinner"
-    pod "Firebase/Database"
-    pod "Letters"
+	pod 'SwiftSpinner'
+    pod 'Firebase/Database'
+    #pod 'Letters'
     pod 'IQKeyboardManager'
     pod 'PopupDialog', '~> 0.5'
 

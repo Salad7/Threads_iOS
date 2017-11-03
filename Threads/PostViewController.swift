@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import Letters
 class PostViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func `return`(_ sender: UIButton) {
         
@@ -88,7 +87,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         upvotes.text = "OP"
         replies.text = reps + " replies"
         loadPosts()
-        userIcon.setImage(string: "D",color: nil,circular: true)
+        //userIcon.setImage(string: "D",color: nil,circular: true)
     }
     
     
@@ -188,7 +187,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             
         }
-        cell.anonIcon?.setImage(string: "M",color: nil, circular: true)
+        //cell.anonIcon?.setImage(string: "M",color: nil, circular: true)
         
         return cell
     }

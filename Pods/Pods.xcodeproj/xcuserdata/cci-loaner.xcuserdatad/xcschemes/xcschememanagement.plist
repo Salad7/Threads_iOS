@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Letters.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Threads.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,17 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>53DF4E4F89B8747CE7A0C889F0FC9F2E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6C1F5AE6C21B0A6D965A18AE25D760E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9F0ADF182F419D441A1341C55600F548</key>
+		<key>5161FEB7F1EAB35EFF7238E792B8A51D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +82,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>EE4CD54EB7FC60F27AB7FB86A4F1E62C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F57972C08EECB6EF64E4B3BF2C179CAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F9F28A212D30DE96F41F2094F08724B1</key>
+		<key>F73D05E424EA9BC9BA437202842C7A24</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -267,7 +267,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-bv-SEv">
-                                <rect key="frame" x="312.5" y="555" width="48" height="48"/>
+                                <rect key="frame" x="312.5" y="565" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="LV5-DU-Lkb"/>
                                     <constraint firstAttribute="width" constant="48" id="bKF-Zw-UFT"/>
@@ -294,7 +294,7 @@
                             <constraint firstAttribute="trailing" secondItem="WEe-EU-bot" secondAttribute="trailing" id="P5U-un-dDv"/>
                             <constraint firstItem="Bke-3d-1q9" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="0.15" constant="-6.5249999999999986" id="el8-fS-cDF"/>
                             <constraint firstItem="WEe-EU-bot" firstAttribute="leading" secondItem="qY6-Pj-Z8b" secondAttribute="leading" id="kCd-fH-VhD"/>
-                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="1.72" constant="5.3700000000000001" id="n6n-Jz-sAv"/>
+                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="1.75" constant="5.3700000000000001" id="n6n-Jz-sAv"/>
                             <constraint firstItem="WEe-EU-bot" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="0.85" constant="64.525000000000034" id="wCY-G0-FT0"/>
                         </constraints>
                         <variation key="default">

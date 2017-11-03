@@ -52,8 +52,11 @@ let locationManager = CLLocationManager()
         _ = threadRef.observe(DataEventType.value, with: { (snapshot) in
             
             for i in 0 ... self.coor_near_me.count-1 {
-                let lat = self.coor_near_me[i].lat
-                let lon = self.coor_near_me[i].lon
+                var lat = self.coor_near_me[i].lat
+                var lon = self.coor_near_me[i].lon
+                lat.roundToPlaces(places: 4)
+                lon.roundToPlaces(places: 4)
+                //print(" Searched Lat " + String(lat) + " Lon " + String(lon))
                 var pos1 = String(lon).components(separatedBy: ".")
                 var pos2 = String(lat).components(separatedBy: ".")
                 //self.pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
@@ -65,16 +68,17 @@ let locationManager = CLLocationManager()
                     self.performSegue(withIdentifier: "show_tabbar", sender: nil)
                     break
                 }
-                print("at index " + String(i))
+                //print("at index " + String(i))
             }
-            let lat = Double((self.locationManager.location?.coordinate.latitude)!)
-            let lon = Double((self.locationManager.location?.coordinate.longitude)!)
+            let lat = Double((self.locationManager.location?.coordinate.latitude)!).roundToPlaces(places: 4)
+            let lon = Double((self.locationManager.location?.coordinate.longitude)!).roundToPlaces(places: 4)
             var pos1 = String(lon).components(separatedBy: ".")
             var pos2 = String(lat).components(separatedBy: ".")
             self.pureKey = pos1[0]+"!"+pos1[1] + "*" + pos2[0]+"!"+pos2[1]
                 SwiftSpinner.hide()
                 print("going to create")
                 self.performSegue(withIdentifier: "show_create", sender: nil)
+            self.threadRef.removeAllObservers()
             
             
         })
@@ -107,7 +111,7 @@ let locationManager = CLLocationManager()
         var la =  String(Double((self.locationManager.location?.coordinate.latitude)!))
         var lo =  String(Double((self.locationManager.location?.coordinate.longitude)!))
         print("My location Lat : " + la + " Lon : " +  lo)
-    coor_near_me = ThreadFinder().runSimulation(laa: Double(la)!-0.000100, loo: Double(lo)!-0.000100)
+    coor_near_me = ThreadFinder().runSimulation(laa: Double(la)!-0.0001, loo: Double(lo)!-0.0001)
         for i in 0 ... coor_near_me.count-1 {
             print("Latitude " + String(describing: coor_near_me[i].lat) + " Longitude " + String(describing: coor_near_me[i].lon))
         }

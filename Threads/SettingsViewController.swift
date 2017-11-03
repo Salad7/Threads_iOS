@@ -70,6 +70,13 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "settings_cell") as! SettingsTableViewCell
         cell.threadName.text = settings[indexPath.row].getName()
         cell.dateCreated.text = String("".getElapsedTime(userTS:settings[indexPath.row].getTimeStamp()))
+        cell.yourobj = {
+            let alertController = UIAlertController(title: "Thread reported.", message:
+                "Thanks for your effort keeping threads clean!", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
         
         return cell
     }

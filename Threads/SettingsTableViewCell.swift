@@ -10,7 +10,13 @@ import UIKit
 
 class SettingsTableViewCell: UITableViewCell {
     @IBAction func settingsBtn(_ sender: UIButton) {
+        if let settingsBtn = self.yourobj{
+            settingsBtn()
+        }
+    
     }
+   
+    
     @IBOutlet weak var dateCreated: UILabel!
 
     @IBOutlet weak var threadName: UILabel!

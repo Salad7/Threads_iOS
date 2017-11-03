@@ -15,10 +15,10 @@ class ThreadFinder{
         var la = laa
         var lo = loo
         var reset = la
-        for lonPos in 0 ... 100 {
-            lo = lo.roundToPlaces(places: 6)+0.000001
-            for latPos in 0 ... 100 {
-                la = la.roundToPlaces(places: 6)+0.000001
+        for lonPos in 0 ... 200 {
+            lo = lo.roundToPlaces(places: 4)+0.0001
+            for latPos in 0 ... 200 {
+                la = la.roundToPlaces(places: 4)+0.0001
                 ll.append(LatLng(la: la, lo: lo))
             }
             la = reset

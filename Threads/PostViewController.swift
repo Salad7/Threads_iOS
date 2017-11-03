@@ -194,12 +194,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //performSegue(withIdentifier: "show_post", sender: indexPath)
-        //tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-        
-    }
-    
+  
     
 
     /*

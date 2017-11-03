@@ -19,22 +19,25 @@ class CreateThreadViewController: UIViewController, UITextFieldDelegate  {
             u.append("".getUID())
             t.setAnons(a:u)
             t.setThreadTitle(t: (threadNameField.text)!)
-            t.setTopics(tp: [createFirstTopic()])
+            /**
+             Creating blank topic, no starter topic
+            **/
+            //t.setTopics(tp: [createFirstTopic()])
             t.setTimeStamp(ts: Date().toMillis())
-            let topic = t.getTopics()[0]
+            //let topic = t.getTopics()[0]
             //Create thread
             threadRef.child("Threads").child(threadCode).updateChildValues(["threadTitle" :t.getThreadTitle()])
             threadRef.child("Threads").child(threadCode).updateChildValues(["timeStamp" :t.getTimeStamp()])
-            threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvoters" :topic.getUpvoters()])
+            //threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvoters" :topic.getUpvoters()])
 
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":topic.getParent()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["UID":topic.getHostUID()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["position":topic.getPostion()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["replies":topic.getReplies()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvotes":topic.getUpvotes()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":topic.getAnonCode()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":topic.getTopicTitle()])
-            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":topic.getTimeStamp()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["parent":topic.getParent()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["UID":topic.getHostUID()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["position":topic.getPostion()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["replies":topic.getReplies()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["upvotes":topic.getUpvotes()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":topic.getAnonCode()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":topic.getTopicTitle()])
+//            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":topic.getTimeStamp()])
             performSegue(withIdentifier: "show_local", sender: nil)
         }
     }

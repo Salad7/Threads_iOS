@@ -95,7 +95,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baby-face" translatesAutoresizingMaskIntoConstraints="NO" id="lV8-k0-Ei8">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="baby-face(1)" translatesAutoresizingMaskIntoConstraints="NO" id="lV8-k0-Ei8">
                                         <rect key="frame" x="100" y="37" width="96" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -175,12 +175,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="122" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="WEe-EU-bot">
-                                <rect key="frame" x="0.0" y="29" width="375" height="529"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="122" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="WEe-EU-bot">
+                                <rect key="frame" x="0.0" y="29" width="375" height="638"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="Dn6-9v-Q7Y"/>
-                                    <constraint firstAttribute="height" constant="549" id="YI8-pB-zZB"/>
+                                    <constraint firstAttribute="height" constant="638" id="YI8-pB-zZB"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -225,7 +225,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJN-v1-pk7">
                                                     <rect key="frame" x="22" y="30" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="navigate-up-arrow"/>
+                                                    <state key="normal" backgroundImage="navigate-up-arrow(1)"/>
                                                     <connections>
                                                         <action selector="upvoteBtn:" destination="8Zn-6p-MRL" eventType="touchUpInside" id="TIG-bG-Ebt"/>
                                                     </connections>
@@ -266,14 +266,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-bv-SEv">
-                                <rect key="frame" x="125" y="566" width="124" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OVh-bv-SEv">
+                                <rect key="frame" x="312.5" y="605" width="48" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="LV5-DU-Lkb"/>
-                                    <constraint firstAttribute="width" constant="124" id="bKF-Zw-UFT"/>
+                                    <constraint firstAttribute="height" constant="48" id="LV5-DU-Lkb"/>
+                                    <constraint firstAttribute="width" constant="48" id="bKF-Zw-UFT"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Post"/>
+                                <state key="normal" image="plus(2)"/>
                                 <connections>
                                     <action selector="postBtn:" destination="3mD-rG-X7c" eventType="touchUpInside" id="bhB-Zq-RFi"/>
                                 </connections>
@@ -290,13 +289,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WEe-EU-bot" firstAttribute="centerX" secondItem="qY6-Pj-Z8b" secondAttribute="centerX" id="DFw-2g-kBQ"/>
-                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerX" secondItem="qY6-Pj-Z8b" secondAttribute="centerX" id="Dr5-CM-MIL"/>
+                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerX" secondItem="qY6-Pj-Z8b" secondAttribute="centerX" multiplier="2" constant="-38.5" id="Dr5-CM-MIL"/>
                             <constraint firstItem="Bke-3d-1q9" firstAttribute="centerX" secondItem="qY6-Pj-Z8b" secondAttribute="centerX" id="KUc-f9-MNA"/>
                             <constraint firstAttribute="trailing" secondItem="WEe-EU-bot" secondAttribute="trailing" id="P5U-un-dDv"/>
                             <constraint firstItem="Bke-3d-1q9" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="0.15" constant="-6.5249999999999986" id="el8-fS-cDF"/>
                             <constraint firstItem="WEe-EU-bot" firstAttribute="leading" secondItem="qY6-Pj-Z8b" secondAttribute="leading" id="kCd-fH-VhD"/>
-                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="1.78" constant="-7.6299999999999955" id="n6n-Jz-sAv"/>
-                            <constraint firstItem="WEe-EU-bot" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="0.85" constant="20.025000000000034" id="wCY-G0-FT0"/>
+                            <constraint firstItem="OVh-bv-SEv" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="1.87" constant="5.3700000000000001" id="n6n-Jz-sAv"/>
+                            <constraint firstItem="WEe-EU-bot" firstAttribute="centerY" secondItem="qY6-Pj-Z8b" secondAttribute="centerY" multiplier="0.85" constant="64.525000000000034" id="wCY-G0-FT0"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -462,7 +461,7 @@
                                                         <constraint firstAttribute="width" constant="24" id="SaF-3N-NwA"/>
                                                         <constraint firstAttribute="height" constant="24" id="qT3-7u-jYI"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="navigate-up-arrow"/>
+                                                    <state key="normal" backgroundImage="navigate-up-arrow(1)"/>
                                                     <connections>
                                                         <action selector="upvoteBtn:" destination="6hU-OG-jGY" eventType="touchUpInside" id="KC2-OD-RTa"/>
                                                     </connections>
@@ -518,7 +517,7 @@
                                     <constraint firstAttribute="height" constant="32" id="0Og-a9-vvf"/>
                                     <constraint firstAttribute="width" constant="32" id="59Y-xA-trP"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="send"/>
+                                <state key="normal" backgroundImage="send(2)"/>
                                 <connections>
                                     <action selector="sendBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="7lZ-An-eMa"/>
                                 </connections>
@@ -598,7 +597,7 @@
                                     <constraint firstAttribute="width" constant="32" id="hT7-H0-XxP"/>
                                     <constraint firstAttribute="height" constant="32" id="xiS-kR-Oa4"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="left-arrow(3)"/>
+                                <state key="normal" backgroundImage="left-arrow(7)"/>
                                 <connections>
                                     <action selector="return:" destination="6SD-5a-VXs" eventType="touchUpInside" id="1lu-aI-ycm"/>
                                     <action selector="returnBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="WxT-FT-KJw"/>
@@ -780,7 +779,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFK-d8-45Z">
                                                     <rect key="frame" x="22" y="30" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="navigate-up-arrow"/>
+                                                    <state key="normal" backgroundImage="navigate-up-arrow(1)"/>
                                                     <connections>
                                                         <action selector="upvoteBtn:" destination="igb-up-V4e" eventType="touchUpInside" id="Mis-29-wFe"/>
                                                     </connections>
@@ -845,6 +844,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tTu-F6-yxt" firstAttribute="centerY" secondItem="A4k-cI-abs" secondAttribute="centerY" multiplier="1.78" constant="12.870000000000005" id="8Tv-Dp-9PW"/>
+                            <constraint firstItem="wKJ-NZ-FKH" firstAttribute="top" secondItem="tTu-F6-yxt" secondAttribute="bottom" constant="41" id="Fzk-i3-P3j"/>
                             <constraint firstItem="tTu-F6-yxt" firstAttribute="centerX" secondItem="A4k-cI-abs" secondAttribute="centerX" id="lkT-I4-Ngk"/>
                         </constraints>
                         <variation key="default">
@@ -867,14 +867,16 @@
     </scenes>
     <resources>
         <image name="arrow-down-sign-to-navigate" width="64" height="64"/>
-        <image name="baby-face" width="128" height="128"/>
+        <image name="baby-face(1)" width="256" height="256"/>
         <image name="internet" width="32" height="32"/>
         <image name="left-arrow(2)" width="64" height="64"/>
-        <image name="left-arrow(3)" width="64" height="64"/>
+        <image name="left-arrow(7)" width="256" height="256"/>
         <image name="navigate-up-arrow" width="64" height="64"/>
+        <image name="navigate-up-arrow(1)" width="256" height="256"/>
         <image name="placeholders(1)" width="32" height="32"/>
+        <image name="plus(2)" width="256" height="256"/>
         <image name="radar(3)" width="32" height="32"/>
-        <image name="send" width="64" height="64"/>
+        <image name="send(2)" width="256" height="256"/>
         <image name="settings(1)" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>

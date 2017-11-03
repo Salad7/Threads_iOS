@@ -121,7 +121,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                
 
                 //2
-                if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics").exists())
+                if(self.threadPath.childSnapshot(forPath: "topics").exists())
                    {
                       let topicPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).childSnapshot(forPath: "topics")
                     //3

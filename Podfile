@@ -8,6 +8,7 @@ target 'Threads' do
 	pod "SwiftSpinner"
     pod "Firebase/Database"
     pod "Letters"
+    pod 'IQKeyboardManager'
     pod 'PopupDialog', '~> 0.5'
 
   # Pods for Threads

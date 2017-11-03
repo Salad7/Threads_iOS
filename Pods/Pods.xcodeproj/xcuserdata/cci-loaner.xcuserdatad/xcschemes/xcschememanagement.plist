@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Letters.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,12 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>266AE1506DAD13D34C0725E909C0C476</key>
+		<key>279AA6726F52A334C45E85774BD21A3D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4046339D2A22FDF2FF12B2AB648910BA</key>
+		<key>3B08C49A396BAA0D9DCAD4460CC52F95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,17 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>88C6CB18BEB8FBFA18253FA95FADB406</key>
+		<key>53DF4E4F89B8747CE7A0C889F0FC9F2E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6C1F5AE6C21B0A6D965A18AE25D760E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9F0ADF182F419D441A1341C55600F548</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE98F907828CE8EF3D49E4E3DB6355B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +98,11 @@
 			<true/>
 		</dict>
 		<key>F57972C08EECB6EF64E4B3BF2C179CAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9F28A212D30DE96F41F2094F08724B1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

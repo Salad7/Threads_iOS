@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManager
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
+        IQKeyboardManager.shared().isEnabled = true
+
         return true
     }
 

@@ -38,7 +38,7 @@ class CreateThreadViewController: UIViewController, UITextFieldDelegate  {
 //            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["anonCode":topic.getAnonCode()])
 //            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["topicTitle":topic.getTopicTitle()])
 //            self.threadRef.child("Threads").child(self.threadCode).child("topics").child("0").updateChildValues(["timeStamp":topic.getTimeStamp()])
-            performSegue(withIdentifier: "show_local", sender: nil)
+            performSegue(withIdentifier: "tabbar_show", sender: nil)
         }
     }
     

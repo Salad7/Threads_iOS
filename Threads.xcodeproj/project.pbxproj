@@ -38,6 +38,9 @@
 		0F7D787A1F63C22E0073E033 /* Topics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D78791F63C22D0073E033 /* Topics.swift */; };
 		0F7D787C1F63C46A0073E033 /* ExtensionSnips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D787B1F63C46A0073E033 /* ExtensionSnips.swift */; };
 		0F7D787E1F65B0370073E033 /* FirebaseCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7D787D1F65B0370073E033 /* FirebaseCounter.swift */; };
+		0FF66E9E1FB0ECCA00C3441F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF66E9D1FB0ECCA00C3441F /* ContactTableViewCell.swift */; };
+		0FF66EA01FB0ED1200C3441F /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF66E9F1FB0ED1200C3441F /* ContactViewController.swift */; };
+		0FF66EA21FB0EDE100C3441F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF66EA11FB0EDE100C3441F /* Contact.swift */; };
 		1DF23FA6C8E73D8BBCF8C4FF /* Pods_ThreadsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5825C906CC54B14B95651B4 /* Pods_ThreadsUITests.framework */; };
 		C30305A79C07DCAEA04BE2E3 /* Pods_ThreadsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D38984F4C2E242B581CACDB3 /* Pods_ThreadsTests.framework */; };
 		F218E6BB9DD0EFDF82E5C031 /* Pods_Threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B02F35B1EBE46C18C6A8DF4C /* Pods_Threads.framework */; };
@@ -98,6 +101,9 @@
 		0F7D78791F63C22D0073E033 /* Topics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
 		0F7D787B1F63C46A0073E033 /* ExtensionSnips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionSnips.swift; sourceTree = "<group>"; };
 		0F7D787D1F65B0370073E033 /* FirebaseCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCounter.swift; sourceTree = "<group>"; };
+		0FF66E9D1FB0ECCA00C3441F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		0FF66E9F1FB0ED1200C3441F /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		0FF66EA11FB0EDE100C3441F /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		13C809B4E8DC73091BB340E7 /* Pods-ThreadsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThreadsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThreadsTests/Pods-ThreadsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		553889098143A344CB4D3DAA /* Pods-ThreadsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThreadsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThreadsTests/Pods-ThreadsTests.release.xcconfig"; sourceTree = "<group>"; };
 		7BBDA070736A1739D4F178CD /* Pods-Threads.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Threads.release.xcconfig"; path = "Pods/Target Support Files/Pods-Threads/Pods-Threads.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 				0F3AD9B71F6821F300783B53 /* SettingsViewController.swift */,
 				0F7916011F7C817F0077887E /* LatLng.swift */,
 				0F7916031F7C82060077887E /* ThreadFinder.swift */,
+				0FF66E9F1FB0ED1200C3441F /* ContactViewController.swift */,
 			);
 			path = Threads;
 			sourceTree = "<group>";
@@ -214,6 +221,7 @@
 				0F7D78561F631E0F0073E033 /* Settings.swift */,
 				0F7D78731F63685D0073E033 /* LonLat.swift */,
 				0F7D78791F63C22D0073E033 /* Topics.swift */,
+				0FF66EA11FB0EDE100C3441F /* Contact.swift */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -226,6 +234,7 @@
 				0F7D785C1F6348F40073E033 /* GlobalTableViewCell.swift */,
 				0F7D785E1F6349010073E033 /* AreaTableViewCell.swift */,
 				0F7D78601F6349570073E033 /* PostTableViewCell.swift */,
+				0FF66E9D1FB0ECCA00C3441F /* ContactTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -538,10 +547,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FF66E9E1FB0ECCA00C3441F /* ContactTableViewCell.swift in Sources */,
 				0F7D784F1F6268650073E033 /* Anon.swift in Sources */,
 				0F7D78221F6241A20073E033 /* ViewController.swift in Sources */,
 				0F7D785F1F6349010073E033 /* AreaTableViewCell.swift in Sources */,
 				0F7D785B1F6348E80073E033 /* LocalTableViewCell.swift in Sources */,
+				0FF66EA01FB0ED1200C3441F /* ContactViewController.swift in Sources */,
 				0F7D78591F6347F20073E033 /* SettingsTableViewCell.swift in Sources */,
 				0F7D78201F6241A20073E033 /* AppDelegate.swift in Sources */,
 				0F7D78551F62688A0073E033 /* Message.swift in Sources */,
@@ -556,6 +567,7 @@
 				0F7D78741F63685D0073E033 /* LonLat.swift in Sources */,
 				0F3AD9B81F6821F300783B53 /* SettingsViewController.swift in Sources */,
 				0F7D785D1F6348F40073E033 /* GlobalTableViewCell.swift in Sources */,
+				0FF66EA21FB0EDE100C3441F /* Contact.swift in Sources */,
 				0F7916021F7C817F0077887E /* LatLng.swift in Sources */,
 				0F7D786A1F634E960073E033 /* AreaViewController.swift in Sources */,
 				0F7D78531F62687A0073E033 /* Post.swift in Sources */,

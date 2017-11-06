@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 class PostViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBAction func linkBtn(_ sender: UIButton) {
+    }
     @IBAction func `return`(_ sender: UIButton) {
         
     }

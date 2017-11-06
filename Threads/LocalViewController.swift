@@ -13,6 +13,7 @@ import SwiftSpinner
 import PopupDialog
 
 class LocalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+   
     
     
     @IBAction func postBtn(_ sender: UIButton) {
@@ -25,7 +26,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Submit button
         let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
             SwiftSpinner.show("Creating Thread")
-
+            let ud = self.randomString(length: 5)
+            // for i in 0 ... 4 {
                 print("thread code is " + self.threadCode)
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["threadTitle" :self.threadTit.text!])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).child("anonCode").updateChildValues(["".getUID():"red"])
@@ -38,6 +40,11 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["topicTitle": alert.textFields![0].text])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["UIDs" :"".getUID()])
+            self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["threadInvite":ud])
+        self.threadRef.child("Invites").child(ud).setValue(self.threadCode+">"+String(self.topicPosition))
+            
+            
+            //}
             //self.threadRef.removeAllObservers()
             //self.addFirebaseLocalThreads()
            
@@ -61,6 +68,30 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     }
     @IBAction func inviteBtn(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Invited to a thread?",
+                                      message: "",
+                                      preferredStyle: .alert)
+        
+        // Submit button
+        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
+            
+        })
+        
+        // Cancel button
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardAppearance = .dark
+            textField.keyboardType = .default
+            textField.autocorrectionType = .default
+            textField.placeholder = "Enter invite code here to join"
+            textField.clearButtonMode = .whileEditing
+        }
+        // Add action buttons and present the Alert
+        alert.addAction(submitAction)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+
     }
     @IBOutlet weak var localTableView: UITableView!
     @IBOutlet weak var threadTit: UILabel!
@@ -307,7 +338,31 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    
+    func randomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
 
     
 
+    
+
+}
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+}
 }

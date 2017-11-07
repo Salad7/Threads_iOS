@@ -41,6 +41,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["UIDs" :"".getUID()])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["threadInvite":ud])
+            
+            
+            
         self.threadRef.child("Invites").child(ud).setValue(self.threadCode+">"+String(self.topicPosition))
             
             
@@ -74,7 +77,40 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Submit button
         let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
-            
+            _ = self.threadRef.observe(DataEventType.value, with: { (snapshot) in
+                var invite = alert.textFields![0].text
+                if(snapshot.childSnapshot(forPath: "Invites").childSnapshot(forPath: invite!).exists()){
+                    //Join thread
+                    var pairs = (snapshot.childSnapshot(forPath: "Invites").childSnapshot(forPath: invite!).value as! String).components(separatedBy: ">")
+                    let inviteThreadCode = pairs[0]
+                    let inviteTopicPosition = pairs[1]
+                    let snappath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: inviteThreadCode).childSnapshot(forPath: "topics").childSnapshot(forPath: inviteTopicPosition)
+                    //let anonCode  = snappath.childSnapshot(forPath: "anonCode").value as! String
+                    let tc = snappath.childSnapshot(forPath: "parent").value as! String
+                    let UID = snappath.childSnapshot(forPath: "UID").value as! String
+                    let position = snappath.childSnapshot(forPath: "position").value as! Int
+                    let replies = snappath.childSnapshot(forPath: "replies").value as! Int
+                    let upvotes = snappath.childSnapshot(forPath: "upvotes").value as! Int
+                    let topicTitle = snappath.childSnapshot(forPath: "topicTitle").value as! String
+                    let timeStamp = snappath.childSnapshot(forPath: "timeStamp").value as! Int
+                    //let inviteCode = snappath.childSnapshot(forPath: "threadInvite").value as! String
+                    if(snappath.childSnapshot(forPath: "upvoters").exists()){
+                    let upvoters = snappath.childSnapshot(forPath: "upvoters").value as! [String]
+                   self.inviteTopic.setUpvoters(u: upvoters)
+                    }
+                    self.inviteCode = inviteThreadCode
+                    self.inviteTopic.setTopicTitle(tp: topicTitle)
+                    self.inviteTopic.setHostUID(uid: UID)
+                    self.inviteTopic.setReplies(r: replies)
+                    
+                    self.inviteTopic.setTimeStamp(t: timeStamp)
+                    self.inviteTopic.setPosition(p: position)
+                    self.isJoiningTopicFromInvite = true
+                    self.performSegue(withIdentifier: "show_post", sender: nil)
+                    
+                }
+                
+            });
         })
         
         // Cancel button
@@ -107,6 +143,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     var positionHit = 10
     var upvoters = [String]()
     var topicSelectedInList = 0;
+    var inviteTopic = Topics()
+    var isJoiningTopicFromInvite = false
+    var inviteCode = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,11 +276,6 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
         var topicPos = indexPath.row
         print("messages count "+String(self.topics[topicPos].getMessages().count))
         cell.yourobj = {
-            //print("poop")
-            //If the user is not in the threads anon
-            
-
-            //print(String(topicPos) + "upvotes")
             var temp = self.topics[indexPath.row].getUpvoters()
             print(self.topics[indexPath.row].getUpvoters())
             print(" You hit topic # " + String(topicPos))
@@ -326,16 +360,29 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "show_post"){
             let vc = segue.destination as! PostViewController
+            vc.threadt = threadTit.text!
+            if(!self.isJoiningTopicFromInvite){
             let topic = self.topics[topicSelectedInList]
             vc.topicPosition = positionHit
-            vc.threadt = threadTit.text!///
             vc.msg = topic.getTopicTitle()
             vc.up = String(topic.getUpvoters().count)
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
             //self.dismiss(animated: true, completion: nil)
             threadRef.removeAllObservers()
+            }
+            else{
+                let topic = self.inviteTopic
+                vc.topicPosition = positionHit
+                vc.msg = topic.getTopicTitle()
+                vc.up = String(topic.getUpvoters().count)
+                vc.reps = String(topic.getReplies())
+                vc.time = String(topic.getTimeStamp())
+                vc.inviteCode = self.inviteCode
+                
+            }
         }
+        
     }
     
     

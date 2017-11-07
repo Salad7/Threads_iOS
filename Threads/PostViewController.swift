@@ -10,6 +10,9 @@ import UIKit
 import Firebase
 class PostViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func linkBtn(_ sender: UIButton) {
+        //invite code stored in inviteCode
+        performSegue(withIdentifier: "show_contacts", sender: nil)
+        
     }
     @IBAction func `return`(_ sender: UIButton) {
         
@@ -75,6 +78,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var topicPosition = 999
     var messagePosition = 999
     var messageSelectedInArray = 0
+    var inviteCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -196,7 +200,12 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     
   
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "show_contacts"){
+            let contactsVC = segue.destination as! ContactViewController
+            contactsVC.threadInvite = self.inviteCode
+        }
+    }
 
     /*
     // MARK: - Navigation

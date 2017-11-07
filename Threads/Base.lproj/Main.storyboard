@@ -390,6 +390,9 @@
                                 <rect key="frame" x="0.0" y="627" width="375" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Send Invite"/>
+                                <connections>
+                                    <action selector="sendInvite:" destination="1Pe-jg-xtR" eventType="touchUpInside" id="96w-Bm-Ac2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -520,11 +523,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RVJ-cp-BhV">
-                                <rect key="frame" x="0.0" y="141" width="375" height="454"/>
+                                <rect key="frame" x="0.0" y="168" width="375" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="MGC-Zh-5oA"/>
-                                    <constraint firstAttribute="height" constant="454" id="np4-Er-77f"/>
+                                    <constraint firstAttribute="height" constant="427" id="np4-Er-77f"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -542,7 +545,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aO-AR-gAk">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aO-AR-gAk">
                                                     <rect key="frame" x="331" y="23" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="SaF-3N-NwA"/>
@@ -557,7 +560,7 @@
                                                     <rect key="frame" x="14" y="11" width="42" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiH-o2-XML">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiH-o2-XML">
                                                     <rect key="frame" x="321.5" y="50" width="51" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="MBv-ta-qoK"/>
@@ -667,7 +670,6 @@
                                         <state key="normal" image="unlink"/>
                                         <connections>
                                             <action selector="linkBtn:" destination="6SD-5a-VXs" eventType="touchUpInside" id="fST-6P-dK5"/>
-                                            <segue destination="1Pe-jg-xtR" kind="show" id="0Mn-NT-Dx5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -713,7 +715,7 @@
                             <constraint firstItem="SZr-h4-rov" firstAttribute="centerX" secondItem="RQJ-9D-Pbg" secondAttribute="centerX" id="Eh9-re-LDU"/>
                             <constraint firstAttribute="trailing" secondItem="RVJ-cp-BhV" secondAttribute="trailing" id="FdL-60-Lw2"/>
                             <constraint firstItem="RVJ-cp-BhV" firstAttribute="centerX" secondItem="RQJ-9D-Pbg" secondAttribute="centerX" id="I5G-JE-937"/>
-                            <constraint firstItem="RVJ-cp-BhV" firstAttribute="centerY" secondItem="RQJ-9D-Pbg" secondAttribute="centerY" multiplier="1.1" constant="1.1499999999999773" id="P3G-7S-Lfd"/>
+                            <constraint firstItem="RVJ-cp-BhV" firstAttribute="centerY" secondItem="RQJ-9D-Pbg" secondAttribute="centerY" multiplier="1.1" constant="14.649999999999977" id="P3G-7S-Lfd"/>
                             <constraint firstItem="SZr-h4-rov" firstAttribute="centerY" secondItem="RQJ-9D-Pbg" secondAttribute="centerY" multiplier="0.25" constant="26.625" id="YYA-bK-Ibd"/>
                             <constraint firstItem="RVJ-cp-BhV" firstAttribute="leading" secondItem="RQJ-9D-Pbg" secondAttribute="leading" id="dNy-1g-zxL"/>
                             <constraint firstItem="THf-k1-t7B" firstAttribute="centerY" secondItem="RQJ-9D-Pbg" secondAttribute="centerY" multiplier="1.89" id="wFM-ik-3Sy"/>
@@ -721,10 +723,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="RVJ-cp-BhV"/>
-                                <exclude reference="IXQ-ga-UwP"/>
-                                <exclude reference="gPW-FM-rkH"/>
-                                <exclude reference="THf-k1-t7B"/>
                                 <exclude reference="lh3-uX-idQ"/>
                             </mask>
                         </variation>
@@ -981,7 +979,7 @@
         <image name="unlink" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sg3-K1-GG0"/>
-        <segue reference="heU-BI-6dw"/>
+        <segue reference="6W4-pu-jF1"/>
+        <segue reference="j9V-WD-axU"/>
     </inferredMetricsTieBreakers>
 </document>

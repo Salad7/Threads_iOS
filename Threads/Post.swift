@@ -19,10 +19,19 @@ class Post {
     var parent = ""
     var hostUID = ""
     var anonCode = [String:String]()
+    var topicInvite = ""
     
     
     init(){
         
+    }
+    
+    func setTopicInvite(ti :String){
+        topicInvite = ti
+    }
+    
+    func getTopicInvite() -> String {
+        return topicInvite
     }
     
     func setPosition(p :Int){

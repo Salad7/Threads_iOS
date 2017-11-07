@@ -8,11 +8,28 @@
 
 import UIKit
 import Contacts
+import MessageUI
 
-class ContactViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContactViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMessageComposeViewControllerDelegate {
+    @IBAction func sendInvite(_ sender: UIButton) {
+        for i in 0 ... contacts.count-1 {
+            if(contacts[i].getSend()){
+                phoneNumbersSelected.append(contacts[i].getPhone())
+            }
+        }
+            let controller = MFMessageComposeViewController()
+            controller.body = "Check out this post on Threads! "+self.threadInvite
+            controller.recipients = phoneNumbersSelected
+            controller.messageComposeDelegate = self as! MFMessageComposeViewControllerDelegate
+            self.present(controller, animated: true, completion: nil)
+        
+        
+    }
     @IBOutlet var contactsTableView: UITableView!
     var cncontacts = [CNContact]()
     var contacts = [Contact]()
+    var phoneNumbersSelected = [String]()
+    var threadInvite = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +69,22 @@ class ContactViewController: UIViewController, UITableViewDataSource, UITableVie
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch (result.rawValue) {
+        case MessageComposeResult.cancelled.rawValue:
+            //print("Message was cancelled")
+            self.dismiss(animated: true, completion: nil)
+        case MessageComposeResult.failed.rawValue:
+            //print("Message failed")
+            self.dismiss(animated: true, completion: nil)
+        case MessageComposeResult.sent.rawValue:
+            //print("Message was sent")
+            self.dismiss(animated: true, completion: nil)
+        default:
+            break;
+        }
     }
     
 

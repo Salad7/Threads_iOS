@@ -75,7 +75,6 @@ class CreateThreadViewController: UIViewController, UITextFieldDelegate  {
         var topic = Topics.init()
         topic.setParent(pa: self.threadCode)
         topic.setReplies(r: 0)
-        topic.setUpvotes(up: 50)
         topic.setPosition(p: 0)
         topic.setTopicTitle(tp: "Hello World")
         let u = ""

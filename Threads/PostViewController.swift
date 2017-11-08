@@ -54,6 +54,10 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             newMessagePath.updateChildValues(["message":message.getMsg()])
             newMessagePath.updateChildValues(["position":message.getPosition()])
             newMessagePath.child("anonCode").updateChildValues(["".getUID():"red"])
+            //if(!notifyList.contains("".getUID())){
+              // notifyList.append(<#T##newElement: String##String#>)
+            //}
+            //postRef.child("Notify").child(<#T##pathString: String##String#>)
             self.textView.text = ""
             //self.replies.text = String(message.replies + 1)
             print("done with stuff")
@@ -75,6 +79,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var reps = ""
     var time = ""
     var up = ""
+    var notifyList = [String]()
     var topicPosition = 999
     var messagePosition = 999
     var messageSelectedInArray = 0
@@ -86,7 +91,6 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         threadCode = defaults.string(forKey: "threadCode")!
         print("PostViewController threadCode " + String(threadCode))
         print("PostViewController topic position " + String(topicPosition))
-
         postTableView.dataSource = self
         postTableView.delegate = self
         postRef = Database.database().reference()

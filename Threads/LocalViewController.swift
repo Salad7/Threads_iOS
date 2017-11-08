@@ -37,6 +37,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["position":self.topicPosition])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["replies":0])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["upvotes":0])
+            var nList = [String]()
+            nList.append("".getUID())
+             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["notifyList":nList])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["topicTitle": alert.textFields![0].text])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
             self.threadRef.child("Threads").child(self.threadCode).updateChildValues(["UIDs" :"".getUID()])
@@ -219,6 +222,8 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                             topic.setParent(pa: specificThreadPath.childSnapshot(forPath: "parent").value as! String)
                             topic.setHostUID(uid: specificThreadPath.childSnapshot(forPath: "UID").value as! String)
                              topic.setTimeStamp(t: specificThreadPath.childSnapshot(forPath: "timeStamp").value as! Int)
+                            topic.setNotifyList(n: specificThreadPath.childSnapshot(forPath: "notifyList").value as! [String])
+                            
                                
                                 if(specificThreadPath.childSnapshot(forPath: "messages").exists()){
                                     //print("message exists")
@@ -227,7 +232,6 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 print("upvoters is " + String(locUpvoters.count))
                                 topic.setUpvoters(u: locUpvoters)
                                 locUpvoters.removeAll()
-                               // topic.setUpvotes(up: topic.getUpvoters().count)
                             self.topics.append(topic)
                             topicsFound = topicsFound + 1
                             }//5
@@ -370,6 +374,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
             //self.dismiss(animated: true, completion: nil)
+            vc.notifyList = topic.getNotifyList()
             threadRef.removeAllObservers()
             }
             else{
@@ -380,6 +385,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                 vc.reps = String(topic.getReplies())
                 vc.time = String(topic.getTimeStamp())
                 vc.inviteCode = self.inviteCode
+                vc.notifyList = topic.getNotifyList()
                 threadRef.removeAllObservers()
 
                 

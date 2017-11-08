@@ -136,7 +136,6 @@ class AreaViewController: UIViewController, UITableViewDataSource, UITableViewDe
                                     //print("message exists")
                                     topic.setMessages(me: specificareaPath.childSnapshot(forPath: "messages").value as! [Message])
                                 }
-                                topic.setUpvotes(up: topic.getUpvoters().count)
                                 self.topics.append(topic)
                                 topicsFound = topicsFound + 1
                             }//5
@@ -276,7 +275,6 @@ class AreaViewController: UIViewController, UITableViewDataSource, UITableViewDe
             vc.topicPosition = positionHit
             vc.threadt = threadTit.text!///
             vc.msg = topic.getTopicTitle()
-            vc.up = String(topic.getUpvotes())
             vc.reps = String(topic.getReplies())
             vc.time = String(topic.getTimeStamp())
             //self.dismiss(animated: true, completion: nil)

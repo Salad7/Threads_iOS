@@ -9,7 +9,6 @@
 import Foundation
 class Topics {
     var position = 0
-    var upvotes = 0
     var topicTitle = ""
     var replies = 0
     var timeStamp = Int()
@@ -18,9 +17,19 @@ class Topics {
     var anonCode = [String:String]()
     var messages = [Message]()
     var upvoters = [String]()
+    var notifyList = [String]()
     
     func setUpvoters(u :[String]){
         upvoters = u
+    }
+    
+    func setNotifyList(n :[String]){
+        notifyList = n
+    }
+    
+    func getNotifyList() -> [String]{
+        
+        return notifyList
     }
     
     func getUpvoters() -> [String]{
@@ -40,9 +49,6 @@ class Topics {
     }
     func getMessages() -> [Message] {
         return messages
-    }
-    func setUpvotes(up :Int){
-        upvotes = up
     }
     func setTopicTitle(tp :String){
         topicTitle = tp
@@ -65,10 +71,6 @@ class Topics {
     
     func getPostion() -> Int {
         return position
-    }
-    
-    func getUpvotes() -> Int {
-        return upvotes
     }
     
     func getTopicTitle() -> String {

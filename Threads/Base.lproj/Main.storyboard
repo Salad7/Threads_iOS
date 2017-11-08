@@ -433,23 +433,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="83.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UNCC Library" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMD-ak-GwE">
-                                                    <rect key="frame" x="18.5" y="8.5" width="293.5" height="33"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="UNCC Library" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMD-ak-GwE">
+                                                    <rect key="frame" x="16" y="8" width="293.5" height="33"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="293.5" id="osk-be-a1p"/>
-                                                        <constraint firstAttribute="height" constant="33" id="uMK-ua-Ihz"/>
+                                                        <constraint firstAttribute="width" constant="293.5" id="mbX-gq-Us1"/>
+                                                        <constraint firstAttribute="height" constant="33" id="pfC-73-Wkp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joined | September 12th 2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux5-Sy-REO">
-                                                    <rect key="frame" x="16.5" y="56.5" width="173" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="Lm5-RH-Pby"/>
-                                                        <constraint firstAttribute="width" constant="173" id="ZJd-Db-pz5"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -469,13 +459,21 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="settings(1)"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joined | September 12th 2017" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux5-Sy-REO">
+                                                    <rect key="frame" x="16" y="56" width="173" height="14"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="14" id="Lm5-RH-Pby"/>
+                                                        <constraint firstAttribute="width" constant="173" id="ZJd-Db-pz5"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Ux5-Sy-REO" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" multiplier="1.52" id="4x4-4N-ccd"/>
                                                 <constraint firstItem="Ux5-Sy-REO" firstAttribute="leading" secondItem="uxD-EI-oah" secondAttribute="leading" constant="16.5" id="KCh-gn-hnd"/>
-                                                <constraint firstItem="sMD-ak-GwE" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="0.88" id="KTV-jZ-gqb"/>
                                                 <constraint firstItem="Ux5-Sy-REO" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="0.55" id="MYt-Zm-1WU"/>
-                                                <constraint firstItem="sMD-ak-GwE" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" multiplier="0.6" id="Udp-1a-2OD"/>
                                                 <constraint firstItem="ZZL-b9-k0u" firstAttribute="centerX" secondItem="uxD-EI-oah" secondAttribute="centerX" multiplier="1.75" id="bQ5-iU-BmH"/>
                                                 <constraint firstItem="ZZL-b9-k0u" firstAttribute="centerY" secondItem="uxD-EI-oah" secondAttribute="centerY" id="uFU-fR-OoZ"/>
                                             </constraints>

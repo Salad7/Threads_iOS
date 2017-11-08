@@ -54,13 +54,11 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             newMessagePath.updateChildValues(["message":message.getMsg()])
             newMessagePath.updateChildValues(["position":message.getPosition()])
             newMessagePath.child("anonCode").updateChildValues(["".getUID():"red"])
-            //if(!notifyList.contains("".getUID())){
-              // notifyList.append(<#T##newElement: String##String#>)
-            //}
-            //postRef.child("Notify").child(<#T##pathString: String##String#>)
+            
             self.textView.text = ""
             //self.replies.text = String(message.replies + 1)
             print("done with stuff")
+            self.addNotifcatioToQueue(msg: message.getMsg())
             self.postRef.removeAllObservers()
             self.loadPosts()
             }
@@ -103,6 +101,31 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //userIcon.setImage(string: "D",color: nil,circular: true)
     }
     
+    func addNotifcatioToQueue(msg :String){
+        if(!notifyList.contains("".getUID())){
+            notifyList.append("".getUID())
+        }
+        postRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if(!snapshot.childSnapshot(forPath: "Notify").exists()){
+                self.postRef.child("Notify").child("0").child("message").setValue(msg)
+                self.postRef.child("Notify").child("0").child("notifyList").setValue(self.notifyList)
+            }
+            else{
+                for i in 0 ... 10000{
+                    if(!snapshot.childSnapshot(forPath: "Notify").childSnapshot(forPath: String(i)).exists()){
+                    self.postRef.child("Notify").child("0").child("message").setValue(msg)
+                    self.postRef.child("Notify").child("0").child("notifyList").setValue(self.notifyList)
+                        break;
+                
+                    }
+                }
+            }
+    }) { (error) in
+    print(error.localizedDescription)
+    }
+            }
+
+
     
 
     func loadPosts(){

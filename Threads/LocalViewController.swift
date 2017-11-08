@@ -82,6 +82,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                 if(snapshot.childSnapshot(forPath: "Invites").childSnapshot(forPath: invite!).exists()){
                     //Join thread
                     var pairs = (snapshot.childSnapshot(forPath: "Invites").childSnapshot(forPath: invite!).value as! String).components(separatedBy: ">")
+                    print("pair 0 : " + pairs[0] + " pair 1 : " + pairs[1])
                     let inviteThreadCode = pairs[0]
                     let inviteTopicPosition = pairs[1]
                     let snappath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: inviteThreadCode).childSnapshot(forPath: "topics").childSnapshot(forPath: inviteTopicPosition)
@@ -99,10 +100,10 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                    self.inviteTopic.setUpvoters(u: upvoters)
                     }
                     self.inviteCode = inviteThreadCode
+                    self.defaults.set(inviteThreadCode, forKey: "threadCode")
                     self.inviteTopic.setTopicTitle(tp: topicTitle)
                     self.inviteTopic.setHostUID(uid: UID)
                     self.inviteTopic.setReplies(r: replies)
-                    
                     self.inviteTopic.setTimeStamp(t: timeStamp)
                     self.inviteTopic.setPosition(p: position)
                     self.isJoiningTopicFromInvite = true
@@ -373,12 +374,14 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             else{
                 let topic = self.inviteTopic
-                vc.topicPosition = positionHit
+                vc.topicPosition = topic.getPostion()
                 vc.msg = topic.getTopicTitle()
                 vc.up = String(topic.getUpvoters().count)
                 vc.reps = String(topic.getReplies())
                 vc.time = String(topic.getTimeStamp())
                 vc.inviteCode = self.inviteCode
+                threadRef.removeAllObservers()
+
                 
             }
         }

@@ -84,6 +84,9 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         postTableView.tableFooterView = UIView()
         threadCode = defaults.string(forKey: "threadCode")!
+        print("PostViewController threadCode " + String(threadCode))
+        print("PostViewController topic position " + String(topicPosition))
+
         postTableView.dataSource = self
         postTableView.delegate = self
         postRef = Database.database().reference()
@@ -104,7 +107,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             var currentLowest = -1
             //1
             self.messages.removeAll()
-            print("loading posts")
+            //print("loading posts")
             if(snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode)).exists()){
                 let threadPath = snapshot.childSnapshot(forPath: "Threads").childSnapshot(forPath: String(self.threadCode))
                 //2
@@ -117,32 +120,33 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     if(topicPath.childSnapshot(forPath: String(self.topicPosition)).childSnapshot(forPath: "messages").exists()){
                         let messagesPath = topicPath.childSnapshot(forPath: String(self.topicPosition)).childSnapshot(forPath: "messages")
                         let totalMessages = Int(messagesPath.childrenCount)
-                        //print("total messages" + String(totalMessages))
-
                         var messagesFound = 0
+                        print(String(totalMessages) + " Messages found!")
                         //4
                         for i in 0 ... FirebaseCounter().MAX_MESSAGES_PER_TOPIC {
                             self.replies.text = String(messagesPath.childrenCount) + " replies"
                             //5
                             if(messagesPath.childSnapshot(forPath: String(i)).exists() && totalMessages >= messagesFound ){
-                                
                             let specificMessagePath = messagesPath.childSnapshot(forPath: String(i))
-                                
-                                if(specificMessagePath.childSnapshot(forPath: "anonCode").value as? [String:String] != nil){
-                                    
+                               // if(specificMessagePath.childSnapshot(forPath: "anonCode").value as? [String:String] != nil){
                             let message = Message()
                                     if(specificMessagePath.childSnapshot(forPath: "upvoters").exists()){
                                         message.setUpvoters(u: specificMessagePath.childSnapshot(forPath: "upvoters").value as! [String])
                                     }
-                            message.setMsg(m: specificMessagePath.childSnapshot(forPath: "message").value as! String)
+                            if let m = specificMessagePath.childSnapshot(forPath: "message").value as? String {
+                            message.setMsg(m: m)
+                                }
                             message.setPosition(p: i)
-                            message.setUpvotes(u: specificMessagePath.childSnapshot(forPath: "upvotes").value as! Int)
-                            message.setReplies(r: specificMessagePath.childSnapshot(forPath: "replies").value as! Int)
-                            message.setTimeStamp(t: specificMessagePath.childSnapshot(forPath: "timeStamp").value as! Int)
-                            message.setAnonCode(a: specificMessagePath.childSnapshot(forPath: "anonCode").value as! [String:String])
+                             if let rep = specificMessagePath.childSnapshot(forPath: "replies").value as? Int {
+                            message.setReplies(r:  rep)
+                                }
+                            if let ts = specificMessagePath.childSnapshot(forPath: "timeStamp").value as? Int {
+                            message.setTimeStamp(t: ts)
+                                }
+                            //message.setAnonCode(a: specificMessagePath.childSnapshot(forPath: "anonCode").value as! [String:String])
                             self.messages.append(message)
                             messagesFound = messagesFound + 1
-                                }
+                                //}
                             }//5
                             //else if we find lowest open positon
                             else {

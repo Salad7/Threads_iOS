@@ -10,6 +10,8 @@ target 'Threads' do
     #pod 'Letters'
     pod 'IQKeyboardManager'
     pod 'PopupDialog', '~> 0.5'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
 
   # Pods for Threads
 

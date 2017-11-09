@@ -101,6 +101,7 @@
 		0F7D78791F63C22D0073E033 /* Topics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topics.swift; sourceTree = "<group>"; };
 		0F7D787B1F63C46A0073E033 /* ExtensionSnips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionSnips.swift; sourceTree = "<group>"; };
 		0F7D787D1F65B0370073E033 /* FirebaseCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseCounter.swift; sourceTree = "<group>"; };
+		0FB380021FB4BF1500C90E1F /* Threads.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Threads.entitlements; sourceTree = "<group>"; };
 		0FF66E9D1FB0ECCA00C3441F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		0FF66E9F1FB0ED1200C3441F /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		0FF66EA11FB0EDE100C3441F /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 		0F7D781E1F6241A20073E033 /* Threads */ = {
 			isa = PBXGroup;
 			children = (
+				0FB380021FB4BF1500C90E1F /* Threads.entitlements */,
 				0F7D78661F634E630073E033 /* Cells */,
 				0F7D784D1F6268490073E033 /* Objects */,
 				0F7D781F1F6241A20073E033 /* AppDelegate.swift */,
@@ -341,6 +343,11 @@
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 4V9E5RB94H;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					0F7D782F1F6241A30073E033 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -729,6 +736,7 @@
 			baseConfigurationReference = DF89D578D698E6107A8DFF88 /* Pods-Threads.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Threads/Threads.entitlements;
 				DEVELOPMENT_TEAM = 4V9E5RB94H;
 				INFOPLIST_FILE = Threads/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -743,6 +751,7 @@
 			baseConfigurationReference = 7BBDA070736A1739D4F178CD /* Pods-Threads.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Threads/Threads.entitlements;
 				DEVELOPMENT_TEAM = 4V9E5RB94H;
 				INFOPLIST_FILE = Threads/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

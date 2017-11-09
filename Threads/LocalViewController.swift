@@ -202,7 +202,6 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                     for i in 0 ... FirebaseCounter().MAX_TOPICS {
                         let totalTopics = Int(topicPath.childrenCount)
                         var topicsFound = 0
-                        
                         if((self.threadPath.childSnapshot(forPath: "topics").childSnapshot(forPath: String(i)).childSnapshot(forPath: "upvoters")).exists()){
                           
                             locUpvoters =  (self.threadPath.childSnapshot(forPath: "topics").childSnapshot(forPath: String(i)).childSnapshot(forPath: "upvoters").value as? [String])!

@@ -104,6 +104,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func addNotifcatioToQueue(msg :String){
         if(!notifyList.contains("".getUID())){
             notifyList.append("".getUID())
+            postRef.child("Threads").child(threadCode).child("topics").child(String(topicPosition)).updateChildValues(["notifyList":notifyList])
         }
         postRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if(!snapshot.childSnapshot(forPath: "Notify").exists()){
@@ -113,8 +114,8 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
             else{
                 for i in 0 ... 10000{
                     if(!snapshot.childSnapshot(forPath: "Notify").childSnapshot(forPath: String(i)).exists()){
-                    self.postRef.child("Notify").child("0").child("message").setValue(msg)
-                    self.postRef.child("Notify").child("0").child("notifyList").setValue(self.notifyList)
+                    self.postRef.child("Notify").child(String(i)).child("message").setValue(msg)
+                    self.postRef.child("Notify").child(String(i)).child("notifyList").setValue(self.notifyList)
                         break;
                 
                     }

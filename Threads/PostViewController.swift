@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 class PostViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var token = ""
     @IBAction func linkBtn(_ sender: UIButton) {
         //invite code stored in inviteCode
         performSegue(withIdentifier: "show_contacts", sender: nil)
@@ -87,6 +89,7 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         postTableView.tableFooterView = UIView()
         threadCode = defaults.string(forKey: "threadCode")!
+        token = Messaging.messaging().fcmToken!
         print("PostViewController threadCode " + String(threadCode))
         print("PostViewController topic position " + String(topicPosition))
         postTableView.dataSource = self
@@ -102,20 +105,24 @@ class PostViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func addNotifcatioToQueue(msg :String){
-        if(!notifyList.contains("".getUID())){
-            notifyList.append("".getUID())
+        if(!notifyList.contains(token)){
+            notifyList.append(token)
             postRef.child("Threads").child(threadCode).child("topics").child(String(topicPosition)).updateChildValues(["notifyList":notifyList])
         }
         postRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if(!snapshot.childSnapshot(forPath: "Notify").exists()){
                 self.postRef.child("Notify").child("0").child("message").setValue(msg)
                 self.postRef.child("Notify").child("0").child("notifyList").setValue(self.notifyList)
+                self.postRef.child("Notify").child("0").child("threadTitle").setValue(self.threadt)
+
             }
             else{
                 for i in 0 ... 10000{
                     if(!snapshot.childSnapshot(forPath: "Notify").childSnapshot(forPath: String(i)).exists()){
                     self.postRef.child("Notify").child(String(i)).child("message").setValue(msg)
                     self.postRef.child("Notify").child(String(i)).child("notifyList").setValue(self.notifyList)
+                    self.postRef.child("Notify").child(String(i)).child("threadTitle").setValue(self.threadt)
+
                         break;
                 
                     }

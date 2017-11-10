@@ -38,7 +38,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["replies":0])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["upvotes":0])
             var nList = [String]()
-            nList.append("".getUID())
+            var token = Messaging.messaging().fcmToken!
+
+                nList.append(token)
              self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["notifyList":nList])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["topicTitle": alert.textFields![0].text])
             self.threadRef.child("Threads").child(self.threadCode).child("topics").child(String(self.topicPosition)).updateChildValues(["timeStamp":Date().toMillis()])
@@ -101,7 +103,9 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                     if(snappath.childSnapshot(forPath: "upvoters").exists()){
                     let upvoters = snappath.childSnapshot(forPath: "upvoters").value as! [String]
                    self.inviteTopic.setUpvoters(u: upvoters)
+                    
                     }
+                    let nList = snappath.childSnapshot(forPath: "notifyList").value as! [String]
                     self.inviteCode = inviteThreadCode
                     self.defaults.set(inviteThreadCode, forKey: "threadCode")
                     self.inviteTopic.setTopicTitle(tp: topicTitle)
@@ -109,6 +113,7 @@ class LocalViewController: UIViewController, UITableViewDataSource, UITableViewD
                     self.inviteTopic.setReplies(r: replies)
                     self.inviteTopic.setTimeStamp(t: timeStamp)
                     self.inviteTopic.setPosition(p: position)
+                    self.inviteTopic.setNotifyList(n: nList);
                     self.isJoiningTopicFromInvite = true
                     self.performSegue(withIdentifier: "show_post", sender: nil)
                     
